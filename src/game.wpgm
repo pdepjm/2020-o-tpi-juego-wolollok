@@ -1,8 +1,5 @@
-import wollok.game.*
-import pepita.*
+import yellowSubmarine.*
 
-program game {
-	game.title("Juego Base")
-	game.addVisual(pepita)
-	game.start()
+program yellowSubmarine {
+	yellowSubmarine.iniciar()
 }
