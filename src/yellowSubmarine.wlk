@@ -1,6 +1,7 @@
 import wollok.game.*
 import submarine.*
 import obstaculos.*
+import tesoros.*
 
 object yellowSubmarine {
 	
@@ -9,19 +10,22 @@ object yellowSubmarine {
 		self.agregarPersonajes()
 		self.configurarTeclas()
 		self.configurarAcciones()
+		self.configurarColisiones()
 		game.start()
 	}
 	
 	method configurarJuego(){
 		game.title("Yellow Submarine")
-		game.width(50)
-		game.height(50)
+		game.width(15)
+		game.height(10)
 		game.boardGround("fondomar.png")
 	}
 	
 	method agregarPersonajes(){
-		game.addVisual(submarine)
 		game.addVisual(bomba)
+		game.addVisual(cofre)
+		game.addVisual(gema)
+		game.addVisual(submarine)
 	}
 	
 	method configurarTeclas(){
@@ -35,4 +39,7 @@ object yellowSubmarine {
 		
 	}
 	
+	method configurarColisiones(){
+		game.onCollideDo(submarine, { visualColisionado => visualColisionado.teChocoElSubmarino()})
+	}
 }
