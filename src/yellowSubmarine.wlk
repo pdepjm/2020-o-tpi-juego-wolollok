@@ -35,8 +35,8 @@ object yellowSubmarine {
 	method configurarTeclas(){
 		keyboard.up().onPressDo({ submarine.moverseA(submarine.position().up(1))})
 		keyboard.down().onPressDo({ submarine.moverseA(submarine.position().down(1))})
-		keyboard.left().onPressDo({ submarine.moverseA(submarine.position().left(1))})
-		keyboard.right().onPressDo({ submarine.moverseA(submarine.position().right(1))})
+		keyboard.left().onPressDo({	submarine.moverseA(submarine.position().left(1)) submarine.image("submarino-left.png")})
+		keyboard.right().onPressDo({ submarine.moverseA(submarine.position().right(1)) submarine.image("submarino-right.png")})
 		keyboard.m().onPressDo({ 
 			if(flag==0)
 				{musica.pause()
