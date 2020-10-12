@@ -2,7 +2,7 @@ import wollok.game.*
 
 object submarine {
 	var property image = "submarino.png"
-	var property position = game.origin()
+	var property position = game.at(9,12)
 	
 	method moverseA(nuevaPosicion){
 		position = nuevaPosicion
