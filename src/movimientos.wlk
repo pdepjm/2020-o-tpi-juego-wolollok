@@ -28,3 +28,19 @@ object recogido {
 	method posicion() = submarine.position().left(1)
 
 }
+
+object lineaHorizontal{
+	
+	method moverseUnaVez(pez){
+		
+	}
+	
+}
+
+object lineaVertical{
+	
+	method moverseUnaVez(pez){
+	
+	}
+	
+}

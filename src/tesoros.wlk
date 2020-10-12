@@ -11,9 +11,9 @@ object cofre {
 	}
 }
 	
-object gema {
+object moneda {
 	var property image = "Coin.png"
-	var movimiento = inicial
+	var property movimiento = inicial
 	
 	method position() = movimiento.posicion()
 	
@@ -22,8 +22,12 @@ object gema {
 	}
 
 	method tesoroRecogido(){
+		// Pasarlo al inventario
+		
 		image = "Coin_chico.png"
-		movimiento = recogido
+		
+		submarine.agregarMoneda()
+		
 	}
 }
 

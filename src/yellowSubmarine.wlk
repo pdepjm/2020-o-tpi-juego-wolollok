@@ -25,9 +25,7 @@ object yellowSubmarine {
 	}
 	
 	method agregarPersonajes(){
-		game.addVisual(bomba)
 		game.addVisual(cofre)
-		game.addVisual(gema)
 		game.addVisual(mercado)
 		game.addVisual(submarine)
 	}
@@ -38,15 +36,14 @@ object yellowSubmarine {
 		keyboard.left().onPressDo({	submarine.moverseA(submarine.position().left(1)) submarine.image("submarino-left.png")})
 		keyboard.right().onPressDo({ submarine.moverseA(submarine.position().right(1)) submarine.image("submarino-right.png")})
 		keyboard.m().onPressDo({ 
-			if(flag==0)
-				{musica.pause()
-				 flag=1
-				}
-			else
-				{
-				 musica.resume()
-				 flag=0
-				}
+		
+		if(flag==0){
+			musica.pause()
+			flag=1 }
+		else{
+			musica.resume()
+			flag=0 }
+				
 		})
 	}
 	
