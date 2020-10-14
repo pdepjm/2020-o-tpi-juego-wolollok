@@ -1,6 +1,5 @@
 import wollok.game.*
 import submarine.*
-import obstaculos.*
 import tesoros.*
 
 object aleatorio {
@@ -29,18 +28,8 @@ object recogido {
 
 }
 
-object lineaHorizontal{
+object encimaDelSubmarino {
 	
-	method moverseUnaVez(pez){
-		
-	}
-	
-}
-
-object lineaVertical{
-	
-	method moverseUnaVez(pez){
-	
-	}
+	method posicion() = submarine.position()
 	
 }

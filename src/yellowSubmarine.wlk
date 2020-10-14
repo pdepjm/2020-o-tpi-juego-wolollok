@@ -1,8 +1,8 @@
 import wollok.game.*
 import submarine.*
-import obstaculos.*
 import tesoros.*
 import mercado.*
+import items.*
 
 object yellowSubmarine {
 	var musica
@@ -27,7 +27,9 @@ object yellowSubmarine {
 	method agregarPersonajes(){
 		game.addVisual(cofre)
 		game.addVisual(mercado)
+		game.addVisual(escudoItem)
 		game.addVisual(submarine)
+		
 	}
 	
 	method configurarTeclas(){
