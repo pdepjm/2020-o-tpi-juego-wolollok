@@ -1,30 +1,30 @@
 import wollok.game.*
-import submarine.*
+import submarino.*
 import items.*
 
 describe "Yellow Submarine"{
 	
 	fixture {
 		game.clear()
-		game.addVisual(submarine)
+		game.addVisual(submarino)
 		game.addVisual(escudoItem)
 	}
 	
 	test "El submarino agarra el item escudo y está protegido"{
-		submarine.moverseA(game.at(7,7))
+		submarino.moverseA(game.at(7,7))
 		escudoItem.teChocoElSubmarino()
 		assert.equals(game.at(7,7), escudoBuff.position())
-		assert.that(submarine.tieneEscudo())
+		assert.that(submarino.tieneEscudo())
 	}
 	
 	test "El submarino sufre daño y pierde el escudo"{
-		submarine.moverseA(game.at(7,7))
+		submarino.moverseA(game.at(7,7))
 		escudoItem.teChocoElSubmarino()
 		
-		assert.that(submarine.tieneEscudo())
+		assert.that(submarino.tieneEscudo())
 		
-		submarine.perderEscudo()
+		submarino.perderEscudo()
 		
-		assert.notThat(submarine.tieneEscudo())
+		assert.notThat(submarino.tieneEscudo())
 	}
 }

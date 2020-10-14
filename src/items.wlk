@@ -1,5 +1,5 @@
 import wollok.game.*
-import submarine.*
+import submarino.*
 import movimientos.*
 
 class Escudo {
@@ -8,7 +8,7 @@ class Escudo {
 	method image() = "escudoItem.png" 
 	
 	method teChocoElSubmarino() {
-		submarine.activarEscudo()
+		submarino.activarEscudo()
 		game.removeVisual(escudoItem)
 	}
 }

@@ -1,11 +1,11 @@
 import wollok.game.*
 import items.*
 
-object submarine {
+object submarino {
 	var property image = "submarino-right.png"
 	var property position = game.at(9,12)
 	var property vidas = 3
-	var property cantMonedas = 0
+	var property monedas = 0
 	var property escudo = false
 	
 	method moverseA(nuevaPosicion){
@@ -21,13 +21,13 @@ object submarine {
 		vidas -= 1
 	}
 	
-	method agregarMoneda(){
-		cantMonedas += 1
-	}
-	
 	method activarEscudo(){
 		escudo = true
 		game.addVisual(escudoBuff)
+	}
+	
+	method agregarMoneda(){
+		
 	}
 	
 	method perderEscudo(){

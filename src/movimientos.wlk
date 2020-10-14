@@ -1,5 +1,5 @@
 import wollok.game.*
-import submarine.*
+import submarino.*
 import tesoros.*
 
 object aleatorio {
@@ -22,14 +22,8 @@ object inicial {
 	method posicion() = game.at(8,0)
 }
 
-object recogido {
-	
-	method posicion() = submarine.position().left(1)
-
-}
-
 object encimaDelSubmarino {
 	
-	method posicion() = submarine.position()
+	method posicion() = submarino.position()
 	
 }

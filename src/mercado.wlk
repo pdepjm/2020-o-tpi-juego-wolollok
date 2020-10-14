@@ -1,5 +1,5 @@
 import wollok.game.*
-import submarine.*
+import submarino.*
 
 object mercado {
 	var property image = "Boat Shop.png"

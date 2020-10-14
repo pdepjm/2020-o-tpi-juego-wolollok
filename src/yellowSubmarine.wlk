@@ -1,5 +1,5 @@
 import wollok.game.*
-import submarine.*
+import submarino.*
 import tesoros.*
 import mercado.*
 import items.*
@@ -28,15 +28,16 @@ object yellowSubmarine {
 		game.addVisual(cofre)
 		game.addVisual(mercado)
 		game.addVisual(escudoItem)
-		game.addVisual(submarine)
+		game.addVisual(submarino)
+		game.showAttributes(submarino)
 		
 	}
 	
 	method configurarTeclas(){
-		keyboard.up().onPressDo({ submarine.moverseA(submarine.position().up(1))})
-		keyboard.down().onPressDo({ submarine.moverseA(submarine.position().down(1))})
-		keyboard.left().onPressDo({	submarine.moverseA(submarine.position().left(1)) submarine.image("submarino-left.png")})
-		keyboard.right().onPressDo({ submarine.moverseA(submarine.position().right(1)) submarine.image("submarino-right.png")})
+		keyboard.up().onPressDo({ submarino.moverseA(submarino.position().up(1))})
+		keyboard.down().onPressDo({ submarino.moverseA(submarino.position().down(1))})
+		keyboard.left().onPressDo({	submarino.moverseA(submarino.position().left(1)) submarino.image("submarino-left.png")})
+		keyboard.right().onPressDo({ submarino.moverseA(submarino.position().right(1)) submarino.image("submarino-right.png")})
 		keyboard.m().onPressDo({ 
 		
 		if(flag==0){
@@ -54,7 +55,7 @@ object yellowSubmarine {
 	}
 	
 	method configurarColisiones(){
-		game.onCollideDo(submarine, { visualColisionado => visualColisionado.teChocoElSubmarino()})
+		game.onCollideDo(submarino, { visualColisionado => visualColisionado.teChocoElSubmarino()})
 	}
 	
 	method configurarMusica(){

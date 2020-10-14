@@ -1,5 +1,5 @@
 import wollok.game.*
-import submarine.*
+import submarino.*
 import movimientos.*
 
 object cofre {
@@ -18,16 +18,8 @@ object moneda {
 	method position() = movimiento.posicion()
 	
 	method teChocoElSubmarino(){
-		self.tesoroRecogido()
+		submarino.agregarMoneda()
 	}
 
-	method tesoroRecogido(){
-		// Pasarlo al inventario
-		
-		image = "Coin_chico.png"
-		
-		submarine.agregarMoneda()
-		
-	}
 }
 
