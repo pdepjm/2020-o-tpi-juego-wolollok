@@ -14,7 +14,7 @@ describe "escudo"{
 	test "El submarino agarra el item escudo y está protegido"{
 		submarino.moverseA(game.at(7,7))
 		escudoItem.teChocoElSubmarino()
-		assert.equals(game.at(7,7), escudoBuff.position())
+		assert.equals(submarino.position(), escudoBuff.position())
 		assert.that(submarino.tieneEscudo())
 	}
 	
@@ -27,6 +27,14 @@ describe "escudo"{
 		submarino.perderEscudo()
 		
 		assert.notThat(submarino.tieneEscudo())
+	}
+	
+	test "El submarino agarra el item escudo y el buff del escudo lo sigue"{
+		submarino.moverseA(game.at(7,7))
+		escudoItem.teChocoElSubmarino()
+		
+		submarino.moverseA(game.at(10,10))
+		assert.equals(submarino.position(), escudoBuff.position())
 	}
 }
 	

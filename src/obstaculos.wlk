@@ -23,7 +23,7 @@ class Bomba inherits Obstaculo {
 	var explosion = game.sound("explosion.wav")
 	
 	var imagen = "bomb.png"
-	var posicion = game.at(5,5)
+	var posicion
 	
 	method image() = imagen
 	method position() = posicion
@@ -42,10 +42,11 @@ class Bomba inherits Obstaculo {
 	}
 }
 
-const bomba = new Bomba()
+const bomba = new Bomba(posicion = game.at(5,5))
+const bomba1 = new Bomba(posicion = game.at(10,5))
 
 /*
-class Pez inherits Obstaculo {
+class Tiburon inherits Obstaculo {
 	
 	const poderGolpe = 1
 	var property movimiento // puede ser vertical u horizontal

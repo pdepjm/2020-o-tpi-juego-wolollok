@@ -1,0 +1,38 @@
+import wollok.game.*
+import submarino.*
+import items.*
+import obstaculos.*
+
+describe "bomba" {
+
+	fixture {
+		game.clear()
+		game.addVisual(bomba)
+		game.addVisual(escudoItem)
+		game.addVisual(submarino)
+	}
+	
+	test "cuando el submarino choca con una bomba y NO tiene escudo pierde 2 vidas" {
+		
+		submarino.moverseA(game.at(5,5))	// esta es la posicion de la bomba
+		bomba.teChocoElSubmarino()
+		assert.equals(submarino.vidas(),1)
+	}
+	
+	test "cuando el submarino choca con una bomba y tiene escudo NO pierde vidas, pero pierde el escudo" {
+		
+		escudoItem.teChocoElSubmarino()
+		submarino.moverseA(game.at(5,5))	// esta es la posicion de la bomba
+		bomba.teChocoElSubmarino()
+		assert.equals(submarino.vidas(),3)
+		assert.notThat(submarino.tieneEscudo())
+	}
+	
+	test "cuando el submarino choca con una bomba, NO tiene escudo y tiene menos de 3 vidas, pierde el juego" {
+		
+		submarino.vidas(2)
+		submarino.moverseA(game.at(5,5))	// esta es la posicion de la bomba
+		bomba.teChocoElSubmarino()
+		assert.equals(submarino.vidas(),0)
+	}
+}

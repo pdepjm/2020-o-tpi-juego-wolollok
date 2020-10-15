@@ -33,7 +33,10 @@ object yellowSubmarine {
 		game.addVisual(cofre)
 		game.addVisual(mercado)
 		game.addVisual(escudoItem)
+		
 		game.addVisual(bomba)
+		game.addVisual(bomba1)
+		
 		game.addVisual(submarino)
 		game.showAttributes(submarino)
 		
