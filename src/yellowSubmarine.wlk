@@ -7,6 +7,10 @@ import items.*
 object yellowSubmarine {
 	var musica
 	var flag=0
+	
+	var property ancho_juego = 20
+	var property alto_juego = 15
+	
 	method iniciar(){
 		self.configurarJuego()
 		self.agregarPersonajes()
@@ -19,8 +23,8 @@ object yellowSubmarine {
 	
 	method configurarJuego(){
 		game.title("Yellow Submarine")
-		game.width(20)
-		game.height(15)
+		game.width(ancho_juego)
+		game.height(alto_juego)
 		game.boardGround("fondomarConOrilla.png")
 	}
 	

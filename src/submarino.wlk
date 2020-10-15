@@ -9,7 +9,12 @@ object submarino {
 	var property escudo = false
 	
 	method moverseA(nuevaPosicion){
-		position = nuevaPosicion
+		if(self.noSaleDelAgua(nuevaPosicion))
+			position = nuevaPosicion
+	}
+	
+	method noSaleDelAgua(nuevaPosicion) {
+		return nuevaPosicion.x() >= 0 and nuevaPosicion.x() < 20 and nuevaPosicion.y() >= 0 and nuevaPosicion.y() < 13
 	}
 	
 	method perdio(){
