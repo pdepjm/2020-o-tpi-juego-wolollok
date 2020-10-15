@@ -7,7 +7,7 @@ describe "bomba" {
 
 	fixture {
 		game.clear()
-		game.addVisual(bomba)
+		game.addVisual(bomba1)
 		game.addVisual(escudoItem)
 		game.addVisual(submarino)
 	}
@@ -15,7 +15,7 @@ describe "bomba" {
 	test "cuando el submarino choca con una bomba y NO tiene escudo pierde 2 vidas" {
 		
 		submarino.moverseA(game.at(5,5))	// esta es la posicion de la bomba
-		bomba.teChocoElSubmarino()
+		bomba1.teChocoElSubmarino()
 		assert.equals(submarino.vidas(),1)
 	}
 	
@@ -23,7 +23,7 @@ describe "bomba" {
 		
 		escudoItem.teChocoElSubmarino()
 		submarino.moverseA(game.at(5,5))	// esta es la posicion de la bomba
-		bomba.teChocoElSubmarino()
+		bomba1.teChocoElSubmarino()
 		assert.equals(submarino.vidas(),3)
 		assert.notThat(submarino.tieneEscudo())
 	}
@@ -32,7 +32,7 @@ describe "bomba" {
 		
 		submarino.vidas(2)
 		submarino.moverseA(game.at(5,5))	// esta es la posicion de la bomba
-		bomba.teChocoElSubmarino()
+		bomba1.teChocoElSubmarino()
 		assert.equals(submarino.vidas(),0)
 	}
 }

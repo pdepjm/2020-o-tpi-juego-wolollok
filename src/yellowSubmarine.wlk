@@ -9,6 +9,10 @@ object yellowSubmarine {
 	var musica
 	var flag=0
 	
+	const piedras = [piedra1,piedra2,piedra3,piedra4,piedra5,piedra6,piedra7,piedra8,piedra9,piedra10,piedra11,piedra12]
+	
+	const bombas = [bomba1,bomba2]
+	
 	var property ancho_juego = 20
 	var property alto_juego = 15
 	
@@ -34,12 +38,14 @@ object yellowSubmarine {
 		game.addVisual(mercado)
 		game.addVisual(escudoItem)
 		
-		game.addVisual(bomba)
-		game.addVisual(bomba1)
+		bombas.forEach({unaBomba =>  game.addVisual(unaBomba)})
+		
+		piedras.forEach({unaPiedra =>  game.addVisual(unaPiedra)})
+		
+		game.addVisual(moneda1)
 		
 		game.addVisual(submarino)
-		game.showAttributes(submarino)
-		
+		game.showAttributes(submarino)		
 	}
 	
 	method configurarTeclas(){
