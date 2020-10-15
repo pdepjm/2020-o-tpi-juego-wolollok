@@ -27,3 +27,11 @@ object encimaDelSubmarino {
 	method posicion() = submarino.position()
 	
 }
+
+object horizontal {
+	
+}
+
+object vertical {
+	
+}

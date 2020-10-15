@@ -22,8 +22,10 @@ object submarino {
 		game.schedule(2000, { game.stop()})
 	}
 	
-	method perderUnaVida(){
-		vidas -= 1
+	method perderVidas(poderGolpe) {
+		vidas = (vidas - poderGolpe).max(0)
+		if(vidas == 0)
+			self.perdio()
 	}
 	
 	method activarEscudo(){
@@ -31,17 +33,15 @@ object submarino {
 		game.addVisual(escudoBuff)
 	}
 	
-	method agregarMoneda(){
-		
-	}
-	
 	method perderEscudo(){
-		
-		// Evita perder vidas
-		
 		escudo = false
 		game.removeVisual(escudoBuff)
 	}
 	
 	method tieneEscudo() = escudo
+	
+	method agregarMoneda(){
+		
+	}
+	
 }

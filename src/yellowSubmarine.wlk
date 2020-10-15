@@ -1,5 +1,6 @@
 import wollok.game.*
 import submarino.*
+import obstaculos.*
 import tesoros.*
 import mercado.*
 import items.*
@@ -17,7 +18,7 @@ object yellowSubmarine {
 		self.configurarTeclas()
 		self.configurarAcciones()
 		self.configurarColisiones()
-		self.configurarMusica()
+		// self.configurarMusica()
 		game.start()
 	}
 	
@@ -32,6 +33,7 @@ object yellowSubmarine {
 		game.addVisual(cofre)
 		game.addVisual(mercado)
 		game.addVisual(escudoItem)
+		game.addVisual(bomba)
 		game.addVisual(submarino)
 		game.showAttributes(submarino)
 		
