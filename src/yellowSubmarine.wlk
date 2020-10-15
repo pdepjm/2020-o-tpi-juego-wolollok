@@ -18,7 +18,7 @@ object yellowSubmarine {
 		self.configurarTeclas()
 		self.configurarAcciones()
 		self.configurarColisiones()
-		// self.configurarMusica()
+		self.configurarMusica()
 		game.start()
 	}
 	
@@ -66,9 +66,12 @@ object yellowSubmarine {
 	
 	method configurarMusica(){
 		musica=game.sound("musica.mp3")
+		musica.volume(0.05)
 		game.schedule(500,{
 			musica.shouldLoop(true)
 			musica.play()		
 		})
 	}
-}
+	
+	method borrarVisual(tiempo,objeto) { game.schedule(tiempo,{game.removeVisual(objeto)}) }
+} 
