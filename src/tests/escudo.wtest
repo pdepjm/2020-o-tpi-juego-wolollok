@@ -1,8 +1,9 @@
 import wollok.game.*
 import submarino.*
 import items.*
+import obstaculos.*
 
-describe "Yellow Submarine"{
+describe "escudo"{
 	
 	fixture {
 		game.clear()
@@ -28,3 +29,4 @@ describe "Yellow Submarine"{
 		assert.notThat(submarino.tieneEscudo())
 	}
 }
+	

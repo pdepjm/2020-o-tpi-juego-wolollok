@@ -1,0 +1,19 @@
+import wollok.game.*
+import submarino.*
+import items.*
+import obstaculos.*
+
+describe "submarino" {
+	
+	fixture {
+		game.clear()
+		game.addVisual(submarino)
+	}
+	
+	test "El submarino se mueve respetando los bordes del agua"{
+		submarino.position(game.at(0,0))
+		submarino.moverseA(submarino.position().left(1))
+		
+		assert.equals(submarino.position(),game.at(0,0))
+	}
+}
