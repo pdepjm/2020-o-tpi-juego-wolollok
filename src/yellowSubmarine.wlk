@@ -83,4 +83,18 @@ object yellowSubmarine {
 	}
 	
 	method borrarVisual(tiempo,objeto) { game.schedule(tiempo,{game.removeVisual(objeto)}) }
+	
+	// devuelve una posicion aleatoria que está vacia dentro del agua
+	method ubicarAleatoriamente(objeto) {
+		
+		const x = 0.randomUpTo(game.width() - 1)
+		const y = 0.randomUpTo(game.height() - 3)
+		
+		var posicion = game.at(x,y)
+		
+		if(game.getObjectsIn(posicion).isEmpty()) // Si no hay nada en esa posicion
+			return posicion
+		else 
+			return self.ubicarAleatoriamente(objeto)
+	}
 } 

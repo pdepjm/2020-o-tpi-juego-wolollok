@@ -21,7 +21,7 @@ object cofre {
 	
 class Moneda {
 	var imagen = "Coin.png"
-	var posicion
+	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
 	
 	method image() = imagen
 	method position() = posicion
@@ -32,5 +32,5 @@ class Moneda {
 	}
 }
 
-const moneda1 = new Moneda(posicion = game.at(9,9))
+const moneda1 = new Moneda()
 
