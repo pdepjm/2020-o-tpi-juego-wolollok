@@ -16,6 +16,9 @@ object yellowSubmarine {
 	var property ancho_juego = 20
 	var property alto_juego = 15
 	
+	var property ancho_agua = 19
+	var property alto_agua = 12
+	
 	method iniciar(){
 		self.configurarJuego()
 		self.agregarPersonajes()
@@ -87,8 +90,8 @@ object yellowSubmarine {
 	// devuelve una posicion aleatoria que está vacia dentro del agua
 	method ubicarAleatoriamente(objeto) {
 		
-		const x = 0.randomUpTo(game.width() - 1)
-		const y = 0.randomUpTo(game.height() - 3)
+		const x = 0.randomUpTo(ancho_agua)
+		const y = 0.randomUpTo(alto_agua)
 		
 		var posicion = game.at(x,y)
 		

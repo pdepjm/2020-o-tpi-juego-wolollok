@@ -1,4 +1,5 @@
 import wollok.game.*
+import yellowSubmarine.*
 import items.*
 
 object submarino {
@@ -14,7 +15,10 @@ object submarino {
 	}
 	
 	method noSaleDelAgua(nuevaPosicion) {
-		return nuevaPosicion.x() >= 0 and nuevaPosicion.x() < 20 and nuevaPosicion.y() >= 0 and nuevaPosicion.y() < 13
+		return (nuevaPosicion.x() >= 0 and
+			    nuevaPosicion.x() <= yellowSubmarine.ancho_agua() and 
+			    nuevaPosicion.y() >= 0 and 
+			    nuevaPosicion.y() <= yellowSubmarine.alto_agua())
 	}
 	
 	method perdio(){
