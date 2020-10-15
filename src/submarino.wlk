@@ -40,8 +40,8 @@ object submarino {
 	
 	method tieneEscudo() = escudo
 	
-	method agregarMoneda(){
-		
+	method agarrarMonedas(cantMonedas){
+		monedas += cantMonedas
 	}
 	
 }

@@ -1,25 +1,36 @@
 import wollok.game.*
+import yellowSubmarine.*
 import submarino.*
 import movimientos.*
 
 object cofre {
-	var property image = "æhest_closed.png"
-	var property position = game.at(8,0)
+	
+	var imagen = "chest_closed.png"
+	const posicion =  game.at(6,0)
+	var tesoro = 3
+	
+	method image() = imagen
+	method position() = posicion
 	
 	method teChocoElSubmarino(){
-		image = "æhest_open.png"	
+		imagen = "chest_open.png"
+		submarino.agarrarMonedas(tesoro)	
+		tesoro = 0
 	}
 }
 	
-object moneda {
-	var property image = "Coin.png"
-	var property movimiento = inicial
+class Moneda {
+	var imagen = "Coin.png"
+	var posicion
 	
-	method position() = movimiento.posicion()
+	method image() = imagen
+	method position() = posicion
 	
 	method teChocoElSubmarino(){
-		submarino.agregarMoneda()
+		submarino.agarrarMonedas(1)
+		yellowSubmarine.borrarVisual(0,self)
 	}
+}
 
-}
+const moneda1 = new Moneda(posicion = game.at(9,9))
 
