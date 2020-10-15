@@ -1,4 +1,5 @@
 import wollok.game.*
+import yellowSubmarine.*
 import submarino.*
 import movimientos.*
 
@@ -14,17 +15,30 @@ class Obstaculo {
 }
 
 class Piedra inherits Obstaculo{
-	
+	const poderGolpe = 1
 }
 
 class Bomba inherits Obstaculo {
-
-	method image() = "bomb.png"
+	var poderGolpe = 2
+	var explosion = game.sound("explosion.wav")
 	
-	method position() = game.at(5,5)
+	var imagen = "bomb.png"
+	var posicion = game.at(5,5)
+	
+	method image() = imagen
+	method position() = posicion
 	
 	method teChocoElSubmarino(){
-		self.golpearSubmarino(2)
+		self.golpearSubmarino(poderGolpe)
+		self.explotar()	
+	}
+	
+	method explotar() {
+		imagen = "explosion.png"
+		explosion.volume(0.05)
+		explosion.play()
+		poderGolpe = 0 
+		yellowSubmarine.borrarVisual(1000,self)
 	}
 }
 
@@ -33,6 +47,7 @@ const bomba = new Bomba()
 /*
 class Pez inherits Obstaculo {
 	
+	const poderGolpe = 1
 	var property movimiento // puede ser vertical u horizontal
 	
 	method teChocoElSubmarino() {

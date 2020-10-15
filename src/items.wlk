@@ -1,4 +1,5 @@
 import wollok.game.*
+import yellowSubmarine.*
 import submarino.*
 import movimientos.*
 
@@ -9,7 +10,7 @@ class Escudo {
 	
 	method teChocoElSubmarino() {
 		submarino.activarEscudo()
-		game.removeVisual(escudoItem)
+		yellowSubmarine.borrarVisual(0,self)
 	}
 }
 
