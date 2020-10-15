@@ -1,0 +1,40 @@
+import wollok.game.*
+import submarino.*
+import items.*
+import obstaculos.*
+
+describe "piedras" {
+
+	fixture {
+		game.clear()
+		game.addVisual(piedra1)
+		game.addVisual(escudoItem)
+		game.addVisual(submarino)
+	}
+	
+	test "cuando el submarino choca con una piedra y NO tiene escudo pierde 1 vida" {
+		
+		submarino.moverseA(game.at(0,2))	// esta es la posicion de la piedra
+		piedra1.teChocoElSubmarino()
+		assert.equals(submarino.vidas(),2)
+	}
+	
+	test "cuando el submarino choca con una piedra y tiene escudo, NO pierde vidas" {
+		
+		escudoItem.teChocoElSubmarino()
+		submarino.moverseA(game.at(0,2))	// esta es la posicion de la piedra
+		piedra1.teChocoElSubmarino()
+		assert.equals(submarino.vidas(),3)
+		assert.notThat(submarino.tieneEscudo())
+	}
+	
+	test "cuando el submarino choca con una piedra, NO tiene escudo y tiene 1 vida, pierde el juego" {
+
+		submarino.vidas(1)
+		submarino.moverseA(game.at(0,2))	// esta es la posicion de la piedra
+		piedra1.teChocoElSubmarino()
+		assert.equals(submarino.vidas(),0)
+	}
+	
+	
+}
