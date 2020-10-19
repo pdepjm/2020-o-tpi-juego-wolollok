@@ -1,0 +1,49 @@
+import wollok.game.*
+import yellowSubmarine.*
+import tesoros.*
+import submarino.*
+
+
+describe "moneda" {
+
+	fixture {
+		game.clear()
+		game.addVisual(moneda)
+		game.addVisual(submarino)
+	}
+	
+	test "cuando el submarino recoge una moneda aumenta la cantidad de monedas del submarino" {
+	
+		moneda.teChocoElSubmarino()
+		assert.equals(submarino.monedas(),1)
+	}
+	
+	test "cuando el submarino recoge monedas aumenta la dificultad del juego" {
+		
+		// es necesario porque sino rompe el test
+		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
+		
+		moneda.teChocoElSubmarino()
+		moneda.teChocoElSubmarino()
+		moneda.teChocoElSubmarino()
+		moneda.teChocoElSubmarino()
+		
+		assert.equals(yellowSubmarine.dificultad(),media)
+	}
+}
+
+describe "cofre" {
+
+	fixture {
+		game.clear()
+		game.addVisual(cofre)
+		game.addVisual(submarino)
+	}
+	
+	test "cuando el submarino choca con el cofre y la cantidad de monedas del submarino se incrementa 3 unidades" {
+		
+		// esta es la posicion del cofre
+		cofre.teChocoElSubmarino()
+		assert.equals(submarino.monedas(),3)
+	}
+}
