@@ -46,6 +46,13 @@ object submarino {
 	
 	method agarrarMonedas(cantMonedas){
 		monedas += cantMonedas
+		
+		yellowSubmarine.actualizarDificultad()
+	}
+	
+	method ganar(){
+		game.say(self, "GANASTE LA PARTIDA")
+		game.schedule(2000, { game.stop()})
 	}
 	
 }

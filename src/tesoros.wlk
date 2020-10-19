@@ -19,21 +19,25 @@ object cofre {
 	}
 }
 	
-class Moneda {
+object moneda {
 	var sonido_moneda = game.sound("grab_coin.mp3")
 	var imagen = "Coin.png"
 	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
+	var property tiempoCambioPosicion = 10000
 	
 	method image() = imagen
 	method position() = posicion
 	
 	method teChocoElSubmarino(){
-		sonido_moneda.volume(0.05)
-		sonido_moneda.play()
+//		sonido_moneda.volume(0.05)
+//		sonido_moneda.play()
+//		game.schedule(3000,{ sonido_moneda.stop() })		
 		submarino.agarrarMonedas(1)
-		yellowSubmarine.borrarVisual(0,self)
+		self.moverse()
 	}
+	
+	method moverse() { posicion = yellowSubmarine.ubicarAleatoriamente(self) }
 }
 
-const moneda1 = new Moneda()
+
 
