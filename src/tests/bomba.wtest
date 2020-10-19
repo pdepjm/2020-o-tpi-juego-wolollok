@@ -1,4 +1,5 @@
 import wollok.game.*
+import yellowSubmarine.*
 import submarino.*
 import items.*
 import obstaculos.*
