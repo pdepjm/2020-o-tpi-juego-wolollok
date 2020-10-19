@@ -23,5 +23,3 @@ class BuffEscudo{
 	method position() = movimiento.posicion()
 }
 
-const escudoItem = new Escudo()
-const escudoBuff = new BuffEscudo()
