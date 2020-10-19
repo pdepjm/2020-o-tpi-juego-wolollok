@@ -8,6 +8,7 @@ import items.*
 object yellowSubmarine {
 	var musica
 	var flag=0
+	var dificultad = facil
 	
 	const piedras = [piedra1,piedra2,piedra3,piedra4,piedra5,piedra6,piedra7,piedra8,piedra9,piedra10,piedra11,piedra12]
 	
@@ -45,10 +46,11 @@ object yellowSubmarine {
 		
 		piedras.forEach({unaPiedra =>  game.addVisual(unaPiedra)})
 		
-		game.addVisual(moneda1)
+		game.addVisual(moneda)
+		game.showAttributes(moneda)		
 		
 		game.addVisual(submarino)
-		game.showAttributes(submarino)		
+		game.showAttributes(submarino)			
 	}
 	
 	method configurarTeclas(){
@@ -69,7 +71,7 @@ object yellowSubmarine {
 	}
 	
 	method configurarAcciones(){
-		
+		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
 	}
 	
 	method configurarColisiones(){
@@ -100,7 +102,78 @@ object yellowSubmarine {
 		else 
 			return self.ubicarAleatoriamente(objeto)
 	}
-} 
+	
+	method actualizarDificultad() {
+		if(submarino.monedas() <= 3)
+			dificultad = facil
+		else if(submarino.monedas() <= 7)
+			dificultad = media
+		else if(submarino.monedas() <= 14)
+			dificultad = dificil
+		else
+			submarino.ganar()
+			
+		dificultad.cargar()
+	}
+	
+	method dificultad() = dificultad
+}
+
+object facil {
+	var flagCarga = false
+	
+	method cargar() {
+		if(!flagCarga){
+			self.generarCambios()
+			flagCarga = true
+		}
+	}
+	
+	method generarCambios(){
+		game.say(submarino, "FACIL")
+		moneda.tiempoCambioPosicion(10000)
+	}
+}
+
+object media {
+	var flagCarga = false
+	
+	method cargar() {
+		if(!flagCarga){
+			self.generarCambios()
+			flagCarga = true
+		}
+	}
+	
+	method generarCambios(){
+		game.say(submarino, "MEDIA")
+		moneda.tiempoCambioPosicion(5000)
+		game.removeTickEvent("mover la moneda")
+		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
+	}
+}
+
+object dificil {
+	var flagCarga = false
+	
+	method cargar() {
+		if(!flagCarga){
+			self.generarCambios()
+			flagCarga = true
+		}
+	}
+	
+	method generarCambios(){
+		game.say(submarino, "DIFICIL")
+		moneda.tiempoCambioPosicion(1000)
+		game.removeTickEvent("mover la moneda")
+		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
+	}
+}
+	 
+// escudo
+const escudoItem = new Escudo()
+const escudoBuff = new BuffEscudo()
 
 // bombas
 const bomba1 = new Bomba(posicion = game.at(5,5))
@@ -121,3 +194,4 @@ const piedra9 = new Piedra(posicion = game.at(5,0),imagen = "Stone_6.png")
 const piedra10 = new Piedra(posicion = game.at(7,0),imagen = "Stone_6.png")
 const piedra11 = new Piedra(posicion = game.at(5,1),imagen = "Stone_6.png")
 const piedra12 = new Piedra(posicion = game.at(7,1),imagen = "Stone_6.png")
+
