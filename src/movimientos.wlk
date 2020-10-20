@@ -3,35 +3,28 @@ import yellowSubmarine.*
 import submarino.*
 import obstaculos.*
 
-object aleatorio {
+object aleatorio { method posicion() = yellowSubmarine.ubicarAleatoriamente(self) }
 
-	method posicion() = yellowSubmarine.ubicarAleatoriamente(self)
-}
-
-object encimaDelSubmarino {
-	
-	method posicion() = submarino.position()
-	
-}
+object encimaDelSubmarino { method posicion() = submarino.position() }
 
 object horizontal {
 	
 	var contador = 0
 	var sentido = 1
 	
-	method moverseUnaVez(tiburon) {
+	method moverseUnaVez(unObjeto) {
 		
-		if(contador <= 3){
+		if(contador <= unObjeto.distancia()){
 			
 			if(sentido == 1){
-				tiburon.image("tiburon_izquierda.png")
 				contador++
-				return self.moverIzquierda(tiburon)
+				unObjeto.cambiarImagenIzquierda()
+				return self.moverIzquierda(unObjeto)
 			}
 			else{
-				tiburon.image("tiburon_derecha.png")
 				contador++
-				return self.moverDerecha(tiburon)
+				unObjeto.cambiarImagenDerecha()
+				return self.moverDerecha(unObjeto)
 			}	
 		}
 			
@@ -39,38 +32,38 @@ object horizontal {
 			
 			sentido = sentido * (-1)
 			contador = 0
-			return tiburon.position()
+			return unObjeto.position()
 		}			
 	}			
 	
-	method moverIzquierda(tiburon) {
-		return tiburon.position().left(1)
+	method moverIzquierda(unObjeto) {
+		return unObjeto.position().left(1)
 	}
 	
-	method moverDerecha(tiburon) {
-		return tiburon.position().right(1)
+	method moverDerecha(unObjeto) {
+		return unObjeto.position().right(1)
 	}
 	
 }
 
 object vertical {
-	
+
 	var contador = 0
 	var sentido = 1
 	
-	method moverseUnaVez(tiburon) {
+	method moverseUnaVez(unObjeto) {
 		
-		if(contador <= 3){
+		if(contador <= unObjeto.distancia()){
 			
 			if(sentido == 1){
-				tiburon.image("tiburon_arriba.png")
 				contador++
-				return self.moverArriba(tiburon)
+				unObjeto.cambiarImagenArriba()
+				return self.moverArriba(unObjeto)
 			}
 			else{
-				tiburon.image("tiburon_abajo.png")
 				contador++
-				return self.moverAbajo(tiburon)
+				unObjeto.cambiarImagenAbajo()
+				return self.moverAbajo(unObjeto)
 			}	
 		}
 			
@@ -78,16 +71,16 @@ object vertical {
 			
 			sentido = sentido * (-1)
 			contador = 0
-			return tiburon.position()
+			return unObjeto.position()
 		}			
 	}			
 	
-	method moverArriba(tiburon) {
-		return tiburon.position().up(1)
+	method moverArriba(unObjeto) {
+		return unObjeto.position().up(1)
 	}
 	
-	method moverAbajo(tiburon) {
-		return tiburon.position().down(1)
+	method moverAbajo(unObjeto) {
+		return unObjeto.position().down(1)
 	}
 	
 }
