@@ -9,7 +9,6 @@ describe "tiburon" {
 	fixture {
 		game.clear()
 		game.addVisual(tiburon1)
-		game.addVisual(escudoItem)
 		game.addVisual(submarino)
 	}
 	
@@ -21,7 +20,7 @@ describe "tiburon" {
 	
 	test "cuando el submarino choca con un tiburon y tiene escudo, NO pierde vidas" {
 		
-		escudoItem.teChocoElSubmarino()
+		escudo.rodearSubmarino()
 		tiburon1.teChocoElSubmarino()
 		assert.equals(submarino.vidas(),3)
 		assert.notThat(submarino.tieneEscudo())

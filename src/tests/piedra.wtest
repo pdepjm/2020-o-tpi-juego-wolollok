@@ -9,7 +9,6 @@ describe "piedras" {
 	fixture {
 		game.clear()
 		game.addVisual(piedra1)
-		game.addVisual(escudoItem)
 		game.addVisual(submarino)
 	}
 	
@@ -22,7 +21,7 @@ describe "piedras" {
 	
 	test "cuando el submarino choca con una piedra y tiene escudo, NO pierde vidas" {
 		
-		escudoItem.teChocoElSubmarino()
+		escudo.rodearSubmarino()
 		submarino.moverseA(game.at(0,2))	// esta es la posicion de la piedra
 		piedra1.teChocoElSubmarino()
 		assert.equals(submarino.vidas(),3)

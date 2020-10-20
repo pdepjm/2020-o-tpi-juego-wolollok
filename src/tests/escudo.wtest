@@ -9,19 +9,18 @@ describe "escudo"{
 	fixture {
 		game.clear()
 		game.addVisual(submarino)
-		game.addVisual(escudoItem)
 	}
 	
 	test "El submarino agarra el item escudo y está protegido"{
 		submarino.moverseA(game.at(7,7))
-		escudoItem.teChocoElSubmarino()
-		assert.equals(submarino.position(), escudoBuff.position())
+		escudo.rodearSubmarino()
+		assert.equals(submarino.position(), escudo.position())
 		assert.that(submarino.tieneEscudo())
 	}
 	
 	test "El submarino sufre daño y pierde el escudo"{
 		submarino.moverseA(game.at(7,7))
-		escudoItem.teChocoElSubmarino()
+		escudo.rodearSubmarino()
 		
 		assert.that(submarino.tieneEscudo())
 		
@@ -32,10 +31,10 @@ describe "escudo"{
 	
 	test "El submarino agarra el item escudo y el buff del escudo lo sigue"{
 		submarino.moverseA(game.at(7,7))
-		escudoItem.teChocoElSubmarino()
+		escudo.rodearSubmarino()
 		
 		submarino.moverseA(game.at(10,10))
-		assert.equals(submarino.position(), escudoBuff.position())
+		assert.equals(submarino.position(), escudo.position())
 	}
 }
 	

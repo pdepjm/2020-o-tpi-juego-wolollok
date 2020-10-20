@@ -7,6 +7,8 @@ object aleatorio { method posicion() = yellowSubmarine.ubicarAleatoriamente(self
 
 object encimaDelSubmarino { method posicion() = submarino.position() }
 
+object noAgarrado { method posicion() = game.at(-20,-20)}
+
 class Horizontal {
 	
 	var contador = 0

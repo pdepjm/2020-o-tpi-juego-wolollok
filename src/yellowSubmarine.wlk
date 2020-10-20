@@ -39,10 +39,7 @@ object yellowSubmarine {
 	method agregarPersonajes(){
 		game.addVisual(cofre)
 		game.addVisual(mercado)
-		game.addVisual(escudoItem)
-
-		game.addVisual(moneda)
-		game.showAttributes(moneda)		
+		game.addVisual(moneda)		
 		
 		game.addVisual(submarino)
 		game.showAttributes(submarino)			
@@ -63,6 +60,8 @@ object yellowSubmarine {
 			flag=0 }
 				
 		})
+		
+		keyboard.b().onPressDo({ escudo.rodearSubmarino() })
 	}
 	
 	method configurarAcciones(){
@@ -132,10 +131,6 @@ object yellowSubmarine {
 	
 	method dificultad() = dificultad
 }
-	 
-// escudo
-const escudoItem = new Escudo()
-const escudoBuff = new BuffEscudo()
 
 //////////////////// OBSTACULOS ////////////////////
 

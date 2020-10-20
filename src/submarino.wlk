@@ -8,7 +8,7 @@ object submarino {
 	var posicionAnterior
 	var property vidas = 3
 	var property monedas = 0
-	var property escudo = false
+	var property tieneEscudo = false
 	
 	method moverseA(nuevaPosicion){
 		
@@ -36,16 +36,14 @@ object submarino {
 	}
 	
 	method activarEscudo(){
-		escudo = true
-		game.addVisual(escudoBuff)
+		tieneEscudo = true
+		game.addVisual(escudo)
 	}
 	
 	method perderEscudo(){
-		escudo = false
-		game.removeVisual(escudoBuff)
+		tieneEscudo = false
+		game.removeVisual(escudo)
 	}
-	
-	method tieneEscudo() = escudo
 	
 	method agarrarMonedas(cantMonedas){
 		monedas += cantMonedas
