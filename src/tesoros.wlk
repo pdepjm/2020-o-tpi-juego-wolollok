@@ -29,9 +29,9 @@ object moneda {
 	method position() = posicion
 	
 	method teChocoElSubmarino(){
-//		sonido_moneda.volume(0.05)
-//		sonido_moneda.play()
-//		game.schedule(3000,{ sonido_moneda.stop() })		
+		
+		sonido_moneda.volume(0.05)
+		sonido_moneda.play()
 		submarino.agarrarMonedas(1)
 		self.moverse()
 	}
