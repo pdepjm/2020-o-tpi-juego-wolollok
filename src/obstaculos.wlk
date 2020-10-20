@@ -18,12 +18,15 @@ class Piedra inherits Obstaculo{
 	const poderGolpe = 1
 	var imagen
 	var posicion
+	var sonido_piedra = game.sound("choque_piedra.wav")
 	
 	method image() = imagen
 	method position() = posicion
 	
 	method teChocoElSubmarino(){
-		self.golpearSubmarino(poderGolpe)	
+		sonido_piedra.volume(0.1)
+		sonido_piedra.play()	
+		self.golpearSubmarino(poderGolpe)
 	}
 }
 
