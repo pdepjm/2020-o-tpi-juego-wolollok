@@ -72,8 +72,8 @@ object yellowSubmarine {
 	method configurarAcciones(){
 		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
 		
-		game.onTick(500, "mover tiburon 1", { tiburon1.moverse() })
-		game.onTick(500, "mover tiburon 2", { tiburon2.moverse() })
+		game.onTick(tiburon1.velocidad(), "mover tiburon 1", { tiburon1.moverse() })
+		game.onTick(tiburon2.velocidad(), "mover tiburon 2", { tiburon2.moverse() })
 	}
 	
 	method configurarColisiones(){
@@ -120,6 +120,8 @@ object yellowSubmarine {
 	
 	method dificultad() = dificultad
 }
+
+////////////////// DIFICULTADES //////////////////
 
 object facil {
 	var flagCarga = false
@@ -182,9 +184,10 @@ const escudoBuff = new BuffEscudo()
 // Dificultad FACIL
 
 // bombas
-const bomba1 = new Bomba(posicion = game.at(5,5))
-const bomba2 = new Bomba(posicion = game.at(10,5))
-const bomba3 = new Bomba(posicion = game.at(6,3))
+
+const bomba1 = new Bomba()
+const bomba2 = new Bomba()
+const bomba3 = new Bomba()
 
 // piedras
 const piedra1 = new Piedra(posicion = game.at(0,2),imagen = "Stone_6.png")
@@ -203,8 +206,8 @@ const piedra11 = new Piedra(posicion = game.at(5,1),imagen = "Stone_6.png")
 const piedra12 = new Piedra(posicion = game.at(7,1),imagen = "Stone_6.png")
 
 // tiburones
-const tiburon1 = new Tiburon(posicion = game.at(7,2), movimiento = horizontal, imagen = "tiburon_derecha.png", distancia = 1)
-const tiburon2 = new Tiburon(posicion = game.at(12,5), movimiento = vertical, imagen = "tiburon_arriba.png", distancia = 4)
+const tiburon1 = new Tiburon(posicion = game.at(7,2), movimiento = horizontal, imagen = "tiburon_derecha.png", distancia = 1, velocidad = 250)
+const tiburon2 = new Tiburon(posicion = game.at(12,5), movimiento = vertical, imagen = "tiburon_arriba.png", distancia = 4, velocidad = 100)
 
 // colecciones
 const piedras = [piedra1,piedra2,piedra3,piedra4,piedra5,piedra6,piedra7,piedra8,piedra9,piedra10,piedra11,piedra12]
