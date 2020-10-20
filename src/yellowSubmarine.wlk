@@ -9,7 +9,7 @@ import movimientos.*
 object yellowSubmarine {
 	var musica
 	var flag = 0
-	var dificultad = facil
+	var dificultad
 	
 	var property ancho_juego = 20
 	var property alto_juego = 15
@@ -20,6 +20,7 @@ object yellowSubmarine {
 	method iniciar(){
 		self.configurarJuego()
 		self.agregarPersonajes()
+		self.actualizarDificultad()
 		self.configurarTeclas()
 		self.configurarAcciones()
 		self.configurarColisiones()
@@ -38,12 +39,6 @@ object yellowSubmarine {
 		game.addVisual(cofre)
 		game.addVisual(mercado)
 		game.addVisual(escudoItem)
-		
-		bombas.forEach({unaBomba =>  game.addVisual(unaBomba)})
-		
-		piedras.forEach({unaPiedra =>  game.addVisual(unaPiedra)})
-		
-		tiburones.forEach({unTiburon =>  game.addVisual(unTiburon)})
 
 		game.addVisual(moneda)
 		game.showAttributes(moneda)		
@@ -104,6 +99,19 @@ object yellowSubmarine {
 		else 
 			return self.ubicarAleatoriamente(objeto)
 	}
+
+	method noSaleDelAgua(nuevaPosicion) {
+		return (nuevaPosicion.x() >= 0 and
+			    nuevaPosicion.x() <= ancho_agua and 
+			    nuevaPosicion.y() >= 0 and 
+			    nuevaPosicion.y() <= alto_agua)
+	}
+	
+	
+	method noChocaConPiedra(nuevaPosicion) = piedras.intersection(game.getObjectsIn(nuevaPosicion)).isEmpty() // Si no hay ninguna piedra en esa posicion
+	
+
+	method chocaConPiedra(nuevaPosicion) = not(self.noChocaConPiedra(nuevaPosicion))
 	
 	method actualizarDificultad() {
 		if(submarino.monedas() <= 3)
@@ -136,6 +144,10 @@ object facil {
 	method generarCambios(){
 		game.say(submarino, "FACIL")
 		moneda.tiempoCambioPosicion(10000)
+		
+		piedras.forEach({unaPiedra =>  game.addVisual(unaPiedra)})
+		bombas.forEach({unaBomba =>  game.addVisual(unaBomba)})
+		tiburones.forEach({unTiburon =>  game.addVisual(unTiburon)})
 	}
 }
 
@@ -188,6 +200,9 @@ const escudoBuff = new BuffEscudo()
 const bomba1 = new Bomba()
 const bomba2 = new Bomba()
 const bomba3 = new Bomba()
+const bomba4 = new Bomba()
+const bomba5 = new Bomba()
+const bomba6 = new Bomba()
 
 // piedras
 const piedra1 = new Piedra(posicion = game.at(0,2),imagen = "Stone_6.png")
@@ -210,9 +225,9 @@ const tiburon1 = new Tiburon(posicion = game.at(7,2), movimiento = horizontal, i
 const tiburon2 = new Tiburon(posicion = game.at(12,5), movimiento = vertical, imagen = "tiburon_arriba.png", distancia = 4, velocidad = 100)
 
 // colecciones
-const piedras = [piedra1,piedra2,piedra3,piedra4,piedra5,piedra6,piedra7,piedra8,piedra9,piedra10,piedra11,piedra12]
+const piedras = #{piedra1,piedra2,piedra3,piedra4,piedra5,piedra6,piedra7,piedra8,piedra9,piedra10,piedra11,piedra12}
 	
-const bombas = [bomba1,bomba2,bomba3]
+const bombas = [bomba1,bomba2,bomba3,bomba4,bomba5,bomba6]
 
 const tiburones = [tiburon1, tiburon2]
 	
