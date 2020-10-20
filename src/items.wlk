@@ -5,7 +5,7 @@ import movimientos.*
 
 class Escudo {
 	
-	method position() = game.at(7,7) 
+	method position() = game.at(2,10) 
 	method image() = "escudoItem.png" 
 	
 	method teChocoElSubmarino() {
