@@ -33,7 +33,7 @@ class Piedra inherits Obstaculo{
 
 class Bomba inherits Obstaculo {
 	var poderGolpe = 2
-	var explosion = game.sound("explosion.wav")
+	//var explosion = game.sound("explosion.wav")
 	
 	var imagen = "bomb.png"
 	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
@@ -48,8 +48,8 @@ class Bomba inherits Obstaculo {
 	
 	method explotar() {
 		imagen = "explosion.png"
-		explosion.volume(0.05)
-		explosion.play()
+		//explosion.volume(0.05)
+		//explosion.play()
 		poderGolpe = 0 
 		yellowSubmarine.borrarVisual(1000,self)
 	}

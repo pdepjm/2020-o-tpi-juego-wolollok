@@ -1,0 +1,38 @@
+import wollok.game.*
+import yellowSubmarine.*
+import submarino.*
+import items.*
+import obstaculos.*
+
+describe "tiburon" {
+
+	fixture {
+		game.clear()
+		game.addVisual(tiburon1)
+		game.addVisual(escudoItem)
+		game.addVisual(submarino)
+	}
+	
+	test "cuando el submarino choca con un tiburon y NO tiene escudo pierde 1 vida" {
+		
+		tiburon1.teChocoElSubmarino()
+		assert.equals(submarino.vidas(),2)
+	}
+	
+	test "cuando el submarino choca con un tiburon y tiene escudo, NO pierde vidas" {
+		
+		escudoItem.teChocoElSubmarino()
+		tiburon1.teChocoElSubmarino()
+		assert.equals(submarino.vidas(),3)
+		assert.notThat(submarino.tieneEscudo())
+	}
+	
+	test "cuando el submarino choca con un tiburon, NO tiene escudo y tiene 1 vida, pierde el juego" {
+
+		submarino.vidas(1)
+		tiburon1.teChocoElSubmarino()
+		assert.equals(submarino.vidas(),0)
+	}
+	
+	
+}
