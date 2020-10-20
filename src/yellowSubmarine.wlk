@@ -66,9 +66,6 @@ object yellowSubmarine {
 	
 	method configurarAcciones(){
 		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
-		
-		game.onTick(tiburon1.velocidad(), "mover tiburon 1", { tiburon1.moverse() })
-		game.onTick(tiburon2.velocidad(), "mover tiburon 2", { tiburon2.moverse() })
 	}
 	
 	method configurarColisiones(){
@@ -107,12 +104,6 @@ object yellowSubmarine {
 			    nuevaPosicion.y() <= alto_agua)
 	}
 	
-	
-	method noChocaConPiedra(nuevaPosicion) = piedras.intersection(game.getObjectsIn(nuevaPosicion)).isEmpty() // Si no hay ninguna piedra en esa posicion
-	
-
-	method chocaConPiedra(nuevaPosicion) = not(self.noChocaConPiedra(nuevaPosicion))
-	
 	method actualizarDificultad() {
 		if(submarino.monedas() <= 3)
 			dificultad = facil
@@ -148,6 +139,12 @@ object facil {
 		piedras.forEach({unaPiedra =>  game.addVisual(unaPiedra)})
 		bombas.forEach({unaBomba =>  game.addVisual(unaBomba)})
 		tiburones.forEach({unTiburon =>  game.addVisual(unTiburon)})
+		
+		game.showAttributes(tiburon1)
+
+		game.onTick(tiburon1.velocidad(), "mover tiburon 1", { tiburon1.moverse() })
+		game.onTick(tiburon2.velocidad(), "mover tiburon 2", { tiburon2.moverse() })
+		game.onTick(tiburon3.velocidad(), "mover tiburon 3", { tiburon3.moverse() })
 	}
 }
 
@@ -221,13 +218,13 @@ const piedra11 = new Piedra(posicion = game.at(5,1),imagen = "Stone_6.png")
 const piedra12 = new Piedra(posicion = game.at(7,1),imagen = "Stone_6.png")
 
 // tiburones
-const tiburon1 = new Tiburon(posicion = game.at(7,2), movimiento = horizontal, imagen = "tiburon_derecha.png", distancia = 1, velocidad = 250)
-const tiburon2 = new Tiburon(posicion = game.at(12,5), movimiento = vertical, imagen = "tiburon_arriba.png", distancia = 4, velocidad = 100)
+const tiburon1 = new Tiburon(movimiento = new Horizontal(), imagen = "tiburon_derecha.png", distancia = 6, velocidad = 1000)
+const tiburon2 = new Tiburon(movimiento = new Vertical(), imagen = "tiburon_arriba.png", distancia = 5, velocidad = 1000)
+const tiburon3 = new Tiburon(movimiento = new Horizontal(), imagen = "tiburon_derecha.png", distancia = 1, velocidad = 1000)
 
 // colecciones
 const piedras = #{piedra1,piedra2,piedra3,piedra4,piedra5,piedra6,piedra7,piedra8,piedra9,piedra10,piedra11,piedra12}
 	
-const bombas = [bomba1,bomba2,bomba3,bomba4,bomba5,bomba6]
+const bombas = #{bomba1,bomba2,bomba3,bomba4,bomba5,bomba6}
 
-const tiburones = [tiburon1, tiburon2]
-	
+const tiburones = [tiburon1,tiburon2,tiburon3]

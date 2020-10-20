@@ -7,14 +7,14 @@ object aleatorio { method posicion() = yellowSubmarine.ubicarAleatoriamente(self
 
 object encimaDelSubmarino { method posicion() = submarino.position() }
 
-object horizontal {
+class Horizontal {
 	
 	var contador = 0
 	var sentido = 1
 	
 	method moverseUnaVez(unObjeto) {
 		
-		if(contador <= unObjeto.distancia()){
+		if(contador < unObjeto.distancia()){
 			
 			if(sentido == 1){
 				contador++
@@ -46,14 +46,14 @@ object horizontal {
 	
 }
 
-object vertical {
+class Vertical {
 
 	var contador = 0
 	var sentido = 1
 	
 	method moverseUnaVez(unObjeto) {
 		
-		if(contador <= unObjeto.distancia()){
+		if(contador < unObjeto.distancia()){
 			
 			if(sentido == 1){
 				contador++

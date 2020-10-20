@@ -57,7 +57,7 @@ class Bomba inherits Obstaculo {
 
 class Tiburon inherits Obstaculo {
 	
-	var posicion 
+	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
 	var imagen 
 	const movimiento 	// puede ser vertical u horizontal
 	const poderGolpe = 1
