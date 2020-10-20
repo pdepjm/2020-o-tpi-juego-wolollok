@@ -14,7 +14,17 @@ class Horizontal {
 	
 	method moverseUnaVez(unObjeto) {
 		
-		if(contador < unObjeto.distancia()){
+		var posicionAnalizar
+		
+		if(sentido == 1)
+			posicionAnalizar = unObjeto.position().left(1)
+		else 
+			posicionAnalizar = unObjeto.position().right(1)
+		
+		if( contador < unObjeto.distancia() and 
+			yellowSubmarine.noChocaConBombaNiPiedra(posicionAnalizar) and 
+			yellowSubmarine.noSaleDelAgua(posicionAnalizar)
+		){
 			
 			if(sentido == 1){
 				contador++
@@ -27,21 +37,22 @@ class Horizontal {
 				return self.moverDerecha(unObjeto)
 			}	
 		}
-			
-		else{
-			
-			sentido = sentido * (-1)
-			contador = 0
-			return unObjeto.position()
-		}			
-	}			
+		else
+			return self.cambiarSentido(unObjeto)		
+	}		
+	
+	method cambiarSentido(unObjeto) {
+		sentido = sentido * (-1)
+		contador = 0
+		return unObjeto.position()
+	}
 	
 	method moverIzquierda(unObjeto) {
-		return unObjeto.position().left(1)
+			return unObjeto.position().left(1)
 	}
 	
 	method moverDerecha(unObjeto) {
-		return unObjeto.position().right(1)
+			return unObjeto.position().right(1)
 	}
 	
 }
@@ -53,7 +64,16 @@ class Vertical {
 	
 	method moverseUnaVez(unObjeto) {
 		
-		if(contador < unObjeto.distancia()){
+		var posicionAnalizar
+		
+		if(sentido == 1)
+			posicionAnalizar = unObjeto.position().up(1)
+		else 
+			posicionAnalizar = unObjeto.position().down(1)
+		
+		if(contador < unObjeto.distancia() and
+			yellowSubmarine.noChocaConBombaNiPiedra(posicionAnalizar) and 
+			yellowSubmarine.noSaleDelAgua(posicionAnalizar)){
 			
 			if(sentido == 1){
 				contador++
@@ -67,20 +87,22 @@ class Vertical {
 			}	
 		}
 			
-		else{
-			
-			sentido = sentido * (-1)
-			contador = 0
-			return unObjeto.position()
-		}			
+		else
+			return self.cambiarSentido(unObjeto)				
+	}
+	
+	method cambiarSentido(unObjeto) {
+		sentido = sentido * (-1)
+		contador = 0
+		return unObjeto.position()
 	}			
 	
-	method moverArriba(unObjeto) {
-		return unObjeto.position().up(1)
+	method moverArriba(unObjeto) {	
+			return unObjeto.position().up(1)
 	}
 	
 	method moverAbajo(unObjeto) {
-		return unObjeto.position().down(1)
+			return unObjeto.position().down(1)
 	}
 	
 }
