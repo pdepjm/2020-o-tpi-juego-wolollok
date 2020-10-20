@@ -33,7 +33,7 @@ class Bomba inherits Obstaculo {
 	var explosion = game.sound("explosion.wav")
 	
 	var imagen = "bomb.png"
-	var posicion
+	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
 	
 	method image() = imagen
 	method position() = posicion
@@ -59,6 +59,7 @@ class Tiburon inherits Obstaculo {
 	const movimiento 	// puede ser vertical u horizontal
 	const poderGolpe = 1
 	var distancia
+	var velocidad
 	
 	method image() = imagen
 	method image(imagenNueva) { imagen = imagenNueva } 
@@ -80,6 +81,8 @@ class Tiburon inherits Obstaculo {
 	}
 	
 	method moverse() { posicion = movimiento.moverseUnaVez(self) }	
+	
+	method velocidad() = velocidad
 }
 
 
