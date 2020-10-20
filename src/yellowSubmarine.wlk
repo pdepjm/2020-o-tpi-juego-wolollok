@@ -203,8 +203,8 @@ const piedra11 = new Piedra(posicion = game.at(5,1),imagen = "Stone_6.png")
 const piedra12 = new Piedra(posicion = game.at(7,1),imagen = "Stone_6.png")
 
 // tiburones
-const tiburon1 = new Tiburon(posicion = game.at(8,2), movimiento = horizontal, imagen = "tiburon_derecha.png")
-const tiburon2 = new Tiburon(posicion = game.at(12,5), movimiento = vertical, imagen = "tiburon_arriba.png")
+const tiburon1 = new Tiburon(posicion = game.at(7,2), movimiento = horizontal, imagen = "tiburon_derecha.png", distancia = 1)
+const tiburon2 = new Tiburon(posicion = game.at(12,5), movimiento = vertical, imagen = "tiburon_arriba.png", distancia = 4)
 
 // colecciones
 const piedras = [piedra1,piedra2,piedra3,piedra4,piedra5,piedra6,piedra7,piedra8,piedra9,piedra10,piedra11,piedra12]

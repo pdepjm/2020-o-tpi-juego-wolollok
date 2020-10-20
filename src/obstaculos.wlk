@@ -58,11 +58,22 @@ class Tiburon inherits Obstaculo {
 	var imagen 
 	const movimiento 	// puede ser vertical u horizontal
 	const poderGolpe = 1
+	var distancia
 	
 	method image() = imagen
 	method image(imagenNueva) { imagen = imagenNueva } 
 	
 	method position() = posicion
+
+	method distancia() = distancia
+
+	method cambiarImagenDerecha() { imagen = "tiburon_derecha.png" }
+
+	method cambiarImagenIzquierda() { imagen = "tiburon_izquierda.png" }
+
+	method cambiarImagenArriba() { imagen = "tiburon_arriba.png" }
+
+	method cambiarImagenAbajo() { imagen = "tiburon_abajo.png" }
 	
 	method teChocoElSubmarino() {
 		self.golpearSubmarino(poderGolpe)
