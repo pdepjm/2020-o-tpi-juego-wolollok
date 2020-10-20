@@ -5,6 +5,7 @@ import tesoros.*
 import mercado.*
 import items.*
 import movimientos.*
+import dificultades.*
 
 object yellowSubmarine {
 	var musica
@@ -131,70 +132,6 @@ object yellowSubmarine {
 	
 	method dificultad() = dificultad
 }
-
-////////////////// DIFICULTADES //////////////////
-
-object facil {
-	var flagCarga = false
-	
-	method cargar() {
-		if(!flagCarga){
-			self.generarCambios()
-			flagCarga = true
-		}
-	}
-	
-	method generarCambios(){
-		game.say(submarino, "FACIL")
-		moneda.tiempoCambioPosicion(10000)
-		
-		piedras.forEach({unaPiedra =>  game.addVisual(unaPiedra)})
-		bombas.forEach({unaBomba =>  game.addVisual(unaBomba)})
-		tiburones.forEach({unTiburon =>  game.addVisual(unTiburon)})
-		
-		game.showAttributes(tiburon1)
-
-		game.onTick(tiburon1.velocidad(), "mover tiburon 1", { tiburon1.moverse() })
-		game.onTick(tiburon2.velocidad(), "mover tiburon 2", { tiburon2.moverse() })
-		game.onTick(tiburon3.velocidad(), "mover tiburon 3", { tiburon3.moverse() })
-	}
-}
-
-object media {
-	var flagCarga = false
-	
-	method cargar() {
-		if(!flagCarga){
-			self.generarCambios()
-			flagCarga = true
-		}
-	}
-	
-	method generarCambios(){
-		game.say(submarino, "MEDIA")
-		moneda.tiempoCambioPosicion(5000)
-		game.removeTickEvent("mover la moneda")
-		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
-	}
-}
-
-object dificil {
-	var flagCarga = false
-	
-	method cargar() {
-		if(!flagCarga){
-			self.generarCambios()
-			flagCarga = true
-		}
-	}
-	
-	method generarCambios(){
-		game.say(submarino, "DIFICIL")
-		moneda.tiempoCambioPosicion(1000)
-		game.removeTickEvent("mover la moneda")
-		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
-	}
-}
 	 
 // escudo
 const escudoItem = new Escudo()
@@ -202,7 +139,17 @@ const escudoBuff = new BuffEscudo()
 
 //////////////////// OBSTACULOS ////////////////////
 
-// Dificultad FACIL
+// colecciones
+const piedras = #{piedra1,piedra2,piedra3,piedra4,piedra5,piedra6,piedra7,piedra8,piedra9,piedra10,piedra11,piedra12}
+	
+const bombas = #{}
+
+const tiburones = #{}
+
+// Obstaculos dificultad Facil
+
+const bombasFacil = #{bomba1,bomba2,bomba3,bomba4,bomba5,bomba6}
+const tiburonesFacil = #{tiburon1,tiburon2,tiburon3}
 
 // bombas
 
@@ -234,9 +181,41 @@ const tiburon1 = new Tiburon(movimiento = new Horizontal(), imagen = "tiburon_de
 const tiburon2 = new Tiburon(movimiento = new Vertical(), imagen = "tiburon_arriba.png", distancia = 2, velocidad = 100)
 const tiburon3 = new Tiburon(posicion = game.at(7,2), movimiento = new Horizontal(), imagen = "tiburon_derecha.png", distancia = 2, velocidad = 250) // Cuida el cofre
 
-// colecciones
-const piedras = #{piedra1,piedra2,piedra3,piedra4,piedra5,piedra6,piedra7,piedra8,piedra9,piedra10,piedra11,piedra12}
-	
-const bombas = #{bomba1,bomba2,bomba3,bomba4,bomba5,bomba6}
 
-const tiburones = [tiburon1,tiburon2,tiburon3]
+
+// Obstaculos dificultad Media
+
+const bombasMedia = #{bomba7,bomba8,bomba9}
+const tiburonesMedia = #{tiburon4,tiburon5}
+
+// bombas 
+
+const bomba7 = new Bomba()
+const bomba8 = new Bomba()
+const bomba9 = new Bomba()
+
+// tiburones
+
+const tiburon4 = new Tiburon(movimiento = new Horizontal(), imagen = "tiburon_derecha.png", distancia = 4, velocidad = 50)
+const tiburon5 = new Tiburon(movimiento = new Vertical(), imagen = "tiburon_arriba.png", distancia = 7, velocidad = 50)
+
+// pulpos 
+
+// iman
+
+
+
+// Obstaculos dificultad Media
+
+const bombasDificil = #{bomba10,bomba11,bomba12} 
+
+// bombas 
+
+const bomba10 = new Bomba()
+const bomba11 = new Bomba()
+const bomba12 = new Bomba()
+
+// pulpo
+
+// cambiar fuerza del iman
+

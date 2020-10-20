@@ -20,7 +20,7 @@ object cofre {
 }
 	
 object moneda {
-	var sonido_moneda = game.sound("grab_coin.mp3")
+	//var sonido_moneda = game.sound("grab_coin.mp3")
 	var imagen = "Coin.png"
 	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
 	var property tiempoCambioPosicion = 10000
@@ -30,8 +30,8 @@ object moneda {
 	
 	method teChocoElSubmarino(){
 		
-		sonido_moneda.volume(0.05)
-		sonido_moneda.play()
+		//sonido_moneda.volume(0.05)
+		//sonido_moneda.play()
 		submarino.agarrarMonedas(1)
 		self.moverse()
 	}

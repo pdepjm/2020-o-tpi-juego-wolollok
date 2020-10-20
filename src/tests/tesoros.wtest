@@ -2,7 +2,7 @@ import wollok.game.*
 import yellowSubmarine.*
 import tesoros.*
 import submarino.*
-
+import dificultades.*
 
 describe "moneda" {
 
