@@ -5,20 +5,23 @@ import items.*
 object submarino {
 	var property image = "submarino-right.png"
 	var property position = game.at(9,12)
+	var posicionAnterior
 	var property vidas = 3
 	var property monedas = 0
 	var property escudo = false
 	
 	method moverseA(nuevaPosicion){
-		if(self.noSaleDelAgua(nuevaPosicion))
+		
+		if(yellowSubmarine.noSaleDelAgua(nuevaPosicion) and yellowSubmarine.noChocaConPiedra(nuevaPosicion)){
+			posicionAnterior = position
 			position = nuevaPosicion
-	}
-	
-	method noSaleDelAgua(nuevaPosicion) {
-		return (nuevaPosicion.x() >= 0 and
-			    nuevaPosicion.x() <= yellowSubmarine.ancho_agua() and 
-			    nuevaPosicion.y() >= 0 and 
-			    nuevaPosicion.y() <= yellowSubmarine.alto_agua())
+		}else if(yellowSubmarine.noSaleDelAgua(nuevaPosicion) and yellowSubmarine.chocaConPiedra(nuevaPosicion)){
+			posicionAnterior = position
+			position = nuevaPosicion
+			game.schedule(500, {self.moverseA(posicionAnterior)})
+			
+		}
+			
 	}
 	
 	method perdio(){
