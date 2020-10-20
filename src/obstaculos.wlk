@@ -52,23 +52,23 @@ class Bomba inherits Obstaculo {
 	}
 }
 
-/*
 class Tiburon inherits Obstaculo {
 	
+	var posicion 
+	var imagen 
+	const movimiento 	// puede ser vertical u horizontal
 	const poderGolpe = 1
-	var property movimiento // puede ser vertical u horizontal
+	
+	method image() = imagen
+	method image(imagenNueva) { imagen = imagenNueva } 
+	
+	method position() = posicion
 	
 	method teChocoElSubmarino() {
-		submarino.perderUnaVida()
+		self.golpearSubmarino(poderGolpe)
 	}
 	
-	
-	method moverse(){
-		movimiento.moverseUnaVez(self)
-	}
-	
-	method estaEnBordeInferior() = self.posicion().x() == 0
-	
-	method estaEnBordeSuperior() = self.posicion().x() == 50	
+	method moverse() { posicion = movimiento.moverseUnaVez(self) }	
 }
-*/
+
+

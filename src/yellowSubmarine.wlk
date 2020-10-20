@@ -4,15 +4,12 @@ import obstaculos.*
 import tesoros.*
 import mercado.*
 import items.*
+import movimientos.*
 
 object yellowSubmarine {
 	var musica
-	var flag=0
+	var flag = 0
 	var dificultad = facil
-	
-	const piedras = [piedra1,piedra2,piedra3,piedra4,piedra5,piedra6,piedra7,piedra8,piedra9,piedra10,piedra11,piedra12]
-	
-	const bombas = [bomba1,bomba2]
 	
 	var property ancho_juego = 20
 	var property alto_juego = 15
@@ -46,6 +43,8 @@ object yellowSubmarine {
 		
 		piedras.forEach({unaPiedra =>  game.addVisual(unaPiedra)})
 		
+		tiburones.forEach({unTiburon =>  game.addVisual(unTiburon)})
+
 		game.addVisual(moneda)
 		game.showAttributes(moneda)		
 		
@@ -72,6 +71,9 @@ object yellowSubmarine {
 	
 	method configurarAcciones(){
 		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
+		
+		game.onTick(500, "mover tiburon 1", { tiburon1.moverse() })
+		game.onTick(500, "mover tiburon 2", { tiburon2.moverse() })
 	}
 	
 	method configurarColisiones(){
@@ -175,9 +177,14 @@ object dificil {
 const escudoItem = new Escudo()
 const escudoBuff = new BuffEscudo()
 
+//////////////////// OBSTACULOS ////////////////////
+
+// Dificultad FACIL
+
 // bombas
 const bomba1 = new Bomba(posicion = game.at(5,5))
 const bomba2 = new Bomba(posicion = game.at(10,5))
+const bomba3 = new Bomba(posicion = game.at(6,3))
 
 // piedras
 const piedra1 = new Piedra(posicion = game.at(0,2),imagen = "Stone_6.png")
@@ -195,3 +202,14 @@ const piedra10 = new Piedra(posicion = game.at(7,0),imagen = "Stone_6.png")
 const piedra11 = new Piedra(posicion = game.at(5,1),imagen = "Stone_6.png")
 const piedra12 = new Piedra(posicion = game.at(7,1),imagen = "Stone_6.png")
 
+// tiburones
+const tiburon1 = new Tiburon(posicion = game.at(8,2), movimiento = horizontal, imagen = "tiburon_derecha.png")
+const tiburon2 = new Tiburon(posicion = game.at(12,5), movimiento = vertical, imagen = "tiburon_arriba.png")
+
+// colecciones
+const piedras = [piedra1,piedra2,piedra3,piedra4,piedra5,piedra6,piedra7,piedra8,piedra9,piedra10,piedra11,piedra12]
+	
+const bombas = [bomba1,bomba2,bomba3]
+
+const tiburones = [tiburon1, tiburon2]
+	
