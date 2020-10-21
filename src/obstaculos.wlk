@@ -14,7 +14,7 @@ class Obstaculo {
 	}
 }
 
-class Piedra inherits Obstaculo{
+class Piedra inherits Obstaculo {
 	const poderGolpe = 1
 	var imagen
 	var posicion
@@ -87,5 +87,39 @@ class Tiburon inherits Obstaculo {
 	
 	method velocidad() = velocidad
 }
+
+class Pulpo inherits Obstaculo {
+	const poderGolpe = 0
+	var velocidad
+	var movimiento = aleatorio
+	var imagen = "EvilOctopus.png"
+	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
+	
+	method image() = imagen
+	method position() = posicion
+	
+	method velocidad() = velocidad
+
+	method teChocoElSubmarino(){
+		self.golpearSubmarino(poderGolpe)
+	}
+
+	override method golpearSubmarino(danio){
+		if(submarino.tieneEscudo())
+			submarino.perderEscudo()
+		else{
+			submarino.perderVidas(danio)
+			self.robarMonedas()
+		}
+	}
+
+	method robarMonedas() {
+		submarino.perderTodasLasMonedas()
+	}	
+
+	method moverse() { posicion = movimiento.posicion() }	
+}
+
+
 
 

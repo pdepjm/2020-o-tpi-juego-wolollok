@@ -1,0 +1,39 @@
+import wollok.game.*
+import yellowSubmarine.*
+import submarino.*
+import items.*
+import obstaculos.*
+import tesoros.*
+
+describe "pulpo" {
+
+	fixture {
+		game.clear()
+		game.addVisual(pulpo1)
+		game.addVisual(moneda)
+		game.addVisual(submarino)
+	}
+	
+	test "cuando el submarino NO tiene escudo y choca con un pulpo, pierde todas las monedas y no pierde vidas" {
+		
+		
+		submarino.monedas(3)
+		assert.equals(submarino.monedas(),3)
+		//moneda.teChocoElSubmarino()
+		pulpo1.teChocoElSubmarino()
+		assert.equals(submarino.vidas(),3)
+		assert.equals(submarino.monedas(),0)
+	}
+	
+	test "cuando el submarino tiene escudo y choca con un pulpo, NO pierde todas las monedas y no pierde vidas" {		
+		escudo.rodearSubmarino()
+		submarino.monedas(3)
+		assert.equals(submarino.monedas(),3)
+		//moneda.teChocoElSubmarino()
+		pulpo1.teChocoElSubmarino()
+		assert.equals(submarino.vidas(),3)
+		assert.equals(submarino.monedas(),3)
+
+	}
+	
+}

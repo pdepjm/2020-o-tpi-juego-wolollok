@@ -95,6 +95,7 @@ object yellowSubmarine {
 			return posicion
 		else 
 			return self.ubicarAleatoriamente(objeto)
+	
 	}
 
 	method noSaleDelAgua(nuevaPosicion) {
@@ -195,6 +196,7 @@ const tiburon4 = new Tiburon(movimiento = new Horizontal(), imagen = "tiburon_de
 const tiburon5 = new Tiburon(movimiento = new Vertical(), imagen = "tiburon_arriba.png", distancia = 7, velocidad = 50)
 
 // pulpos 
+const pulpo1 = new Pulpo(velocidad = 1000)
 
 // iman
 
@@ -211,6 +213,7 @@ const bomba11 = new Bomba()
 const bomba12 = new Bomba()
 
 // pulpo
+const pulpo2 = new Pulpo(velocidad = 1000)
 
 // cambiar fuerza del iman
 

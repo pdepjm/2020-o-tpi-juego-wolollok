@@ -59,7 +59,10 @@ object media {
 		tiburonesMedia.forEach({unTiburon =>  
 			game.addVisual(unTiburon)
 			tiburones.add(unTiburon)})
-			
+
+		game.addVisual(pulpo1)
+		game.onTick(pulpo1.velocidad(), "mover pulpo 1", { pulpo1.moverse() })
+
 		game.onTick(tiburon4.velocidad(), "mover tiburon 4", { tiburon4.moverse() })
 		game.onTick(tiburon5.velocidad(), "mover tiburon 5", { tiburon5.moverse() })
 	}
@@ -84,5 +87,8 @@ object dificil {
 		bombasDificil.forEach({unaBomba =>  
 			game.addVisual(unaBomba)
 			bombas.add(unaBomba)})
+
+		game.addVisual(pulpo2)
+		game.onTick(pulpo2.velocidad(), "mover pulpo 2", { pulpo2.moverse() })
 	}
 }

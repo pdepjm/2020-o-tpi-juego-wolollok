@@ -50,6 +50,8 @@ object submarino {
 		
 		yellowSubmarine.actualizarDificultad()
 	}
+
+	method perderTodasLasMonedas() { monedas = 0 }
 	
 	method ganar(){
 		game.say(self, "GANASTE LA PARTIDA")
