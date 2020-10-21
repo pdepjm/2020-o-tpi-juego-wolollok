@@ -1,0 +1,21 @@
+import wollok.game.*
+import yellowSubmarine.*
+import submarino.*
+import obstaculos.*
+
+describe "iman" {
+	
+	fixture {
+		game.clear()
+		game.addVisual(iman)
+		game.addVisual(submarino)
+	}
+	
+	test "el iman atrae 1 casillero hacia la izquierda al submarino" {
+		
+		submarino.position(game.at(5,5))
+		iman.atraerSubmarino()
+		assert.equals(submarino.position(), game.at(4,5))
+	}
+}
+

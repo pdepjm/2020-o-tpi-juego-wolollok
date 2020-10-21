@@ -2,6 +2,7 @@ import wollok.game.*
 import yellowSubmarine.*
 import submarino.*
 import tesoros.*
+import obstaculos.*
 
 
 ////////////////// DIFICULTADES //////////////////
@@ -62,6 +63,9 @@ object media {
 
 		game.addVisual(pulpo1)
 		game.onTick(pulpo1.velocidad(), "mover pulpo 1", { pulpo1.moverse() })
+		
+		game.addVisual(iman)
+		game.onTick(iman.frecuenciaAtraccion(), "atraccion iman dificultad media", { iman.atraerSubmarino()})
 
 		game.onTick(tiburon4.velocidad(), "mover tiburon 4", { tiburon4.moverse() })
 		game.onTick(tiburon5.velocidad(), "mover tiburon 5", { tiburon5.moverse() })
@@ -87,6 +91,11 @@ object dificil {
 		bombasDificil.forEach({unaBomba =>  
 			game.addVisual(unaBomba)
 			bombas.add(unaBomba)})
+
+
+		iman.frecuenciaAtraccion(1000)
+		game.removeTickEvent("atraccion iman dificultad media")
+		game.onTick(iman.frecuenciaAtraccion(), "atraccion iman dificultad dificil", { iman.atraerSubmarino()})
 
 		game.addVisual(pulpo2)
 		game.onTick(pulpo2.velocidad(), "mover pulpo 2", { pulpo2.moverse() })

@@ -157,6 +157,7 @@ const bomba5 = new Bomba()
 const bomba6 = new Bomba()
 
 // piedras
+
 const piedra1 = new Piedra(posicion = game.at(0,2),imagen = "Stone_6.png")
 const piedra2 = new Piedra(posicion = game.at(0,4),imagen = "Stone_6.png")
 const piedra3 = new Piedra(posicion = game.at(0,5),imagen = "Stone_6.png")
@@ -173,6 +174,7 @@ const piedra11 = new Piedra(posicion = game.at(5,1),imagen = "Stone_6.png")
 const piedra12 = new Piedra(posicion = game.at(7,1),imagen = "Stone_6.png")
 
 // tiburones
+
 const tiburon1 = new Tiburon(movimiento = new Horizontal(), imagen = "tiburon_derecha.png", distancia = 3, velocidad = 100)
 const tiburon2 = new Tiburon(movimiento = new Vertical(), imagen = "tiburon_arriba.png", distancia = 2, velocidad = 100)
 const tiburon3 = new Tiburon(posicion = game.at(7,2), movimiento = new Horizontal(), imagen = "tiburon_derecha.png", distancia = 2, velocidad = 250) // Cuida el cofre
@@ -198,11 +200,10 @@ const tiburon5 = new Tiburon(movimiento = new Vertical(), imagen = "tiburon_arri
 // pulpos 
 const pulpo1 = new Pulpo(velocidad = 1000)
 
-// iman
 
 
 
-// Obstaculos dificultad Media
+// Obstaculos dificultad Dificil
 
 const bombasDificil = #{bomba10,bomba11,bomba12} 
 
@@ -214,6 +215,4 @@ const bomba12 = new Bomba()
 
 // pulpo
 const pulpo2 = new Pulpo(velocidad = 1000)
-
-// cambiar fuerza del iman
 

@@ -120,6 +120,20 @@ class Pulpo inherits Obstaculo {
 	method moverse() { posicion = movimiento.posicion() }	
 }
 
-
+object iman {
+	var imagen = "magnet.png"
+	var posicion = game.at(0,6)
+	
+	var property frecuenciaAtraccion = 3000
+		
+	method image() = imagen
+	method position() = posicion
+	
+	method teChocoElSubmarino() {}
+	
+	method atraerSubmarino() {
+		submarino.moverseA(submarino.position().left(1))
+	}
+}
 
 
