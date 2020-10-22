@@ -18,7 +18,7 @@ object facil {
 	}
 	
 	method generarCambios(){
-		game.say(submarino, "FACIL")
+		//game.say(submarino, "FACIL")
 		moneda.tiempoCambioPosicion(10000)
 		
 		piedras.forEach({unaPiedra =>  game.addVisual(unaPiedra)})
@@ -48,7 +48,7 @@ object media {
 	}
 	
 	method generarCambios(){
-		game.say(submarino, "MEDIA")
+		//game.say(submarino, "MEDIA")
 		moneda.tiempoCambioPosicion(5000)
 		game.removeTickEvent("mover la moneda")
 		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
@@ -83,7 +83,7 @@ object dificil {
 	}
 	
 	method generarCambios(){
-		game.say(submarino, "DIFICIL")
+		//game.say(submarino, "DIFICIL")
 		moneda.tiempoCambioPosicion(1000)
 		game.removeTickEvent("mover la moneda")
 		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )

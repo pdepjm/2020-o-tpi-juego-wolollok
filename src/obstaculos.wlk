@@ -132,6 +132,7 @@ object iman {
 	method teChocoElSubmarino() {}
 	
 	method atraerSubmarino() {
+		if(!submarino.estaEnMercado())
 		submarino.moverseA(submarino.position().left(1))
 	}
 }

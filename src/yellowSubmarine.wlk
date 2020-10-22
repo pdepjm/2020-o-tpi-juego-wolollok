@@ -6,6 +6,7 @@ import mercado.*
 import items.*
 import movimientos.*
 import dificultades.*
+import interfaz.*
 
 object yellowSubmarine {
 	var musica
@@ -34,13 +35,15 @@ object yellowSubmarine {
 		game.width(ancho_juego)
 		game.height(alto_juego)
 		game.boardGround("fondomarConOrilla.png")
+		game.addVisual(indicadorDificultad)
+		game.addVisual(barraVida)
+		game.addVisual(billetera)
 	}
 	
 	method agregarPersonajes(){
 		game.addVisual(cofre)
 		game.addVisual(mercado)
 		game.addVisual(moneda)		
-		
 		game.addVisual(submarino)
 		game.showAttributes(submarino)			
 	}
@@ -61,7 +64,7 @@ object yellowSubmarine {
 				
 		})
 		
-		keyboard.b().onPressDo({ escudo.rodearSubmarino() })
+		//keyboard.b().onPressDo({ escudo.rodearSubmarino() })
 	}
 	
 	method configurarAcciones(){
@@ -215,4 +218,3 @@ const bomba12 = new Bomba()
 
 // pulpo
 const pulpo2 = new Pulpo(velocidad = 1000)
-

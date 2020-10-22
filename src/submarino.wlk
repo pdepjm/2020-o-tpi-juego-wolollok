@@ -1,8 +1,10 @@
 import wollok.game.*
 import yellowSubmarine.*
 import items.*
+import mercado.*
 
 object submarino {
+	var property estaEnMercado = false
 	var property image = "submarino-right.png"
 	var property position = game.at(9,12)
 	var posicionAnterior
@@ -58,4 +60,19 @@ object submarino {
 		game.schedule(2000, { game.stop()})
 	}
 	
+	method entrarAlMercado(){
+		estaEnMercado = true
+	}
+	method salirDelMercado(){
+		estaEnMercado = false
+	}
+	method comprarVida(){
+		if(vidas<3)
+		{vidas+=1
+		monedas-=mercado.precioVida()}
+	}
+	method comprarEscudo(){
+		escudo.rodearSubmarino()
+		monedas-=mercado.precioEscudo()
+	}
 }
