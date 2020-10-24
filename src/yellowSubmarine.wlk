@@ -149,11 +149,3 @@ object yellowSubmarine {
 	method dificultad() = dificultad
 }
 
-//////////////////// OBSTACULOS ////////////////////
-
-// Obstaculos dificultad Facil
-
-// Obstaculos dificultad Media
-
-// Obstaculos dificultad Dificil
-
