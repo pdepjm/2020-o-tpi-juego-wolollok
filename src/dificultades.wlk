@@ -3,6 +3,7 @@ import yellowSubmarine.*
 import submarino.*
 import tesoros.*
 import obstaculos.*
+import movimientos.*
 
 
 ////////////////// DIFICULTADES //////////////////
@@ -16,88 +17,155 @@ object facil {
 			flagCarga = true
 		}
 	}
+
+	method piedras() {
+		// piedras
+		return #{
+			new Piedra(posicion = game.at(0,2),imagen = "Stone_6_der.png"),
+			new Piedra(posicion = game.at(0,4),imagen = "Stone_6_der.png"),
+			new Piedra(posicion = game.at(0,5),imagen = "Stone_6_der.png"),
+			new Piedra(posicion = game.at(0,7),imagen = "Stone_6_der.png"),
+			new Piedra(posicion = game.at(19,3),imagen = "Stone_6_izq.png"),
+			new Piedra(posicion = game.at(19,5),imagen = "Stone_6_izq.png"),
+			new Piedra(posicion = game.at(19,6),imagen = "Stone_6_izq.png"),
+			new Piedra(posicion = game.at(19,1),imagen = "Stone_6_izq.png"),
+			new Piedra(posicion = game.at(5,0),imagen = "Stone_6.png"),
+			new Piedra(posicion = game.at(7,0),imagen = "Stone_6.png"),
+			new Piedra(posicion = game.at(5,1),imagen = "Stone_6.png"),
+			new Piedra(posicion = game.at(7,1),imagen = "Stone_6.png")
+		}
+	}
+
+	method bombas() {
+		// bombas
+
+		return #{ 
+			new Bomba(),
+			new Bomba(),
+			new Bomba(),
+			new Bomba(),
+			new Bomba(),
+			new Bomba()
+		}
+	}
+
+	method tiburones() {
+		// tiburones
+		return #{
+			new Tiburon(movimiento = new Horizontal(), imagen = "tiburon_derecha.png", distancia = 3, velocidad = 100),
+			new Tiburon(movimiento = new Vertical(), imagen = "tiburon_arriba.png", distancia = 2, velocidad = 100),
+			new Tiburon(posicion = game.at(7,2), movimiento = new Horizontal(), imagen = "tiburon_derecha.png", distancia = 2, velocidad = 250)
+		}
+	}
 	
 	method generarCambios(){
-		//game.say(submarino, "FACIL")
 		moneda.tiempoCambioPosicion(10000)
-		
-		piedras.forEach({unaPiedra =>  game.addVisual(unaPiedra)})
-		
-		bombasFacil.forEach({unaBomba =>  
-			game.addVisual(unaBomba)
-			bombas.add(unaBomba)}) 
-			
-		tiburonesFacil.forEach({unTiburon =>  
-			game.addVisual(unTiburon)
-			tiburones.add(unTiburon)})
 
-		game.onTick(tiburon1.velocidad(), "mover tiburon 1", { tiburon1.moverse() })
-		game.onTick(tiburon2.velocidad(), "mover tiburon 2", { tiburon2.moverse() })
-		game.onTick(tiburon3.velocidad(), "mover tiburon 3", { tiburon3.moverse() })
+		self.piedras().forEach({unaPiedra =>
+									game.addVisual(unaPiedra)
+									yellowSubmarine.agregarPiedra(unaPiedra)})
+		
+		self.bombas().forEach({unaBomba =>  
+									game.addVisual(unaBomba)
+									yellowSubmarine.agregarBomba(unaBomba)}) 
+			
+		self.tiburones().forEach({unTiburon =>
+									game.addVisual(unTiburon)
+									game.onTick(unTiburon.velocidad(), "mover tiburon " + unTiburon.toString(), { unTiburon.moverse() }) })
 	}
 }
 
+
 object media {
 	var flagCarga = false
-	
+
 	method cargar() {
 		if(!flagCarga){
 			self.generarCambios()
 			flagCarga = true
 		}
 	}
-	
+
+	method bombas() {
+			// bombas 
+			return #{
+				new Bomba(),
+				new Bomba(),
+				new Bomba()	
+			}
+		}
+
+	method tiburones() {
+		// tiburones
+		return #{
+			new Tiburon(movimiento = new Horizontal(), imagen = "tiburon_derecha.png", distancia = 4, velocidad = 50),
+			new Tiburon(movimiento = new Vertical(), imagen = "tiburon_arriba.png", distancia = 7, velocidad = 50)
+		}
+	}
+
+	method agregarPulpo(unPulpo) {
+		game.addVisual(unPulpo)
+		game.onTick(unPulpo.velocidad(), "mover pulpo " + unPulpo.toString(), { unPulpo.moverse() })
+	}
+
 	method generarCambios(){
-		//game.say(submarino, "MEDIA")
 		moneda.tiempoCambioPosicion(5000)
 		game.removeTickEvent("mover la moneda")
 		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
 		
-		bombasMedia.forEach({unaBomba =>  
-			game.addVisual(unaBomba)
-			bombas.add(unaBomba)}) 
+		self.bombas().forEach({unaBomba =>  
+									game.addVisual(unaBomba)
+									yellowSubmarine.agregarBomba(unaBomba)}) 
 			
-		tiburonesMedia.forEach({unTiburon =>  
-			game.addVisual(unTiburon)
-			tiburones.add(unTiburon)})
+		self.tiburones().forEach({unTiburon =>
+									game.addVisual(unTiburon)
+									game.onTick(unTiburon.velocidad(), "mover tiburon " + unTiburon.toString(), { unTiburon.moverse() }) })
 
-		game.addVisual(pulpo1)
-		game.onTick(pulpo1.velocidad(), "mover pulpo 1", { pulpo1.moverse() })
+		self.agregarPulpo(new Pulpo(velocidad = 2000))
 		
 		game.addVisual(iman)
 		game.onTick(iman.frecuenciaAtraccion(), "atraccion iman dificultad media", { iman.atraerSubmarino()})
-
-		game.onTick(tiburon4.velocidad(), "mover tiburon 4", { tiburon4.moverse() })
-		game.onTick(tiburon5.velocidad(), "mover tiburon 5", { tiburon5.moverse() })
 	}
 }
 
+
 object dificil {
 	var flagCarga = false
-	
+
 	method cargar() {
 		if(!flagCarga){
 			self.generarCambios()
 			flagCarga = true
 		}
 	}
+
+	method bombas() {
+		// bombas 
+		return #{
+			new Bomba(),
+			new Bomba(),
+			new Bomba()	
+		}
+	}
+
+	method agregarPulpo(unPulpo) {
+		game.addVisual(unPulpo)
+		game.onTick(unPulpo.velocidad(), "mover pulpo " + unPulpo.toString(), { unPulpo.moverse() })
+	}
 	
 	method generarCambios(){
-		//game.say(submarino, "DIFICIL")
 		moneda.tiempoCambioPosicion(1000)
 		game.removeTickEvent("mover la moneda")
 		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
 		
-		bombasDificil.forEach({unaBomba =>  
-			game.addVisual(unaBomba)
-			bombas.add(unaBomba)})
+		self.bombas().forEach({unaBomba =>  
+									game.addVisual(unaBomba)
+									yellowSubmarine.agregarBomba(unaBomba)}) 
 
+		self.agregarPulpo(new Pulpo(velocidad = 1000))
 
 		iman.frecuenciaAtraccion(1000)
 		game.removeTickEvent("atraccion iman dificultad media")
 		game.onTick(iman.frecuenciaAtraccion(), "atraccion iman dificultad dificil", { iman.atraerSubmarino()})
-
-		game.addVisual(pulpo2)
-		game.onTick(pulpo2.velocidad(), "mover pulpo 2", { pulpo2.moverse() })
 	}
 }
