@@ -68,7 +68,6 @@ class Facil inherits Dificultad {
 	}
 	
 	method generarCambios(){
-		moneda.tiempoCambioPosicion(10000)
 
 		self.piedras().forEach({unaPiedra =>
 									game.addVisual(unaPiedra)
@@ -119,9 +118,6 @@ class Media inherits Dificultad {
 	}
 
 	method generarCambios(){
-		moneda.tiempoCambioPosicion(5000)
-		game.removeTickEvent("mover la moneda")
-		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
 		
 		self.bombas().forEach({unaBomba =>  
 									game.addVisual(unaBomba)
@@ -169,9 +165,6 @@ class Dificil inherits Dificultad {
 	}
 	
 	method generarCambios(){
-		moneda.tiempoCambioPosicion(1000)
-		game.removeTickEvent("mover la moneda")
-		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
 		
 		self.bombas().forEach({unaBomba =>  
 									game.addVisual(unaBomba)

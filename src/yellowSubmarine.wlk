@@ -34,8 +34,8 @@ object yellowSubmarine {
 
 	method iniciar(){
 		self.configurarJuego()
-		self.agregarPersonajes()
 		self.configurarDificultad()
+		self.agregarPersonajes()
 		self.configurarTeclas()
 		self.configurarAcciones()
 		self.configurarColisiones()
@@ -56,11 +56,11 @@ object yellowSubmarine {
 	method agregarPersonajes(){
 		game.addVisual(cofre)
 		game.addVisual(mercado)
-		game.addVisual(moneda)		
+		self.agregarMonedaInicial(new Moneda())		
 		game.addVisual(submarino)
 		game.showAttributes(submarino)			
 	}
-	
+
 	method configurarTeclas(){
 		keyboard.up().onPressDo({ submarino.moverseA(submarino.position().up(1))})
 		keyboard.down().onPressDo({ submarino.moverseA(submarino.position().down(1))})
@@ -76,12 +76,10 @@ object yellowSubmarine {
 			flag=0 }
 				
 		})
-		
-		//keyboard.b().onPressDo({ escudo.rodearSubmarino() })
 	}
 	
 	method configurarAcciones(){
-		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
+		
 	}
 	
 	method configurarColisiones(){
@@ -96,7 +94,16 @@ object yellowSubmarine {
 			musica.play()		
 		})
 	}
-	
+
+	// agrega la primer moneda del juego 
+	method agregarMonedaInicial(unaMoneda) { unaMoneda.agregarMoneda(unaMoneda) }
+
+	// configura la dificultad inicial del juego en facil y carga esta dificultad
+	method configurarDificultad() { 
+		self.dificultad(new Facil()) 
+		self.dificultad().generarCambios() 
+	} 
+		
 	method borrarVisual(tiempo,objeto) { game.schedule(tiempo,{game.removeVisual(objeto)}) }
 	
 	// devuelve una posicion aleatoria que está vacia dentro del agua
@@ -134,12 +141,6 @@ object yellowSubmarine {
 	}
 
 	method analizarDificultad() { dificultad.chequearDificultad() }
-
-	// configura la dificultad inicial del juego en facil y carga esta dificultad
-	method configurarDificultad() { 
-		self.dificultad(new Facil()) 
-		self.dificultad().generarCambios() 
-	} 
 	
 }
 
