@@ -8,13 +8,27 @@ import movimientos.*
 class Dificultad {
 	
 	method limiteMonedas()
-	method aumentarDificultad()
+	method bombas()
+	method proximaDificultad()
 
 	method chequearDificultad() {
 		if(submarino.monedas() > self.limiteMonedas()){
 			self.aumentarDificultad()
 			yellowSubmarine.dificultad().generarCambios()	
 		}
+	}
+
+	method aumentarDificultad() { yellowSubmarine.dificultad(self.proximaDificultad()) }
+
+	method generarCambios(){	
+		self.bombas().forEach({unaBomba =>  
+									game.addVisual(unaBomba)
+									yellowSubmarine.agregarBomba(unaBomba)}) 
+	}
+
+	method agregarPulpo(unPulpo) {
+		game.addVisual(unPulpo)
+		game.onTick(unPulpo.velocidad(), "mover pulpo " + unPulpo.toString(), { unPulpo.moverse() })
 	}
 
 }
@@ -25,7 +39,7 @@ class Facil inherits Dificultad {
 
 	override method limiteMonedas() = 3 
 	method velocidadMoneda() = 10000
-	method proximaDificultad() = new Media()
+	override method proximaDificultad() = new Media()
 
 	method piedras() {
 		// piedras facil
@@ -45,17 +59,9 @@ class Facil inherits Dificultad {
 		}
 	}
 
-	method bombas() {
+	override method bombas() {
 		// bombas
-
-		return #{ 
-			new Bomba(),
-			new Bomba(),
-			new Bomba(),
-			new Bomba(),
-			new Bomba(),
-			new Bomba()
-		}
+		return #{new Bomba(),new Bomba(),new Bomba(),new Bomba(),new Bomba(),new Bomba()}
 	}
 
 	method tiburones() {
@@ -67,22 +73,17 @@ class Facil inherits Dificultad {
 		}
 	}
 	
-	method generarCambios(){
+	override method generarCambios(){
+		super()
 
 		self.piedras().forEach({unaPiedra =>
 									game.addVisual(unaPiedra)
 									yellowSubmarine.agregarPiedra(unaPiedra)})
-		
-		self.bombas().forEach({unaBomba =>  
-									game.addVisual(unaBomba)
-									yellowSubmarine.agregarBomba(unaBomba)}) 
 			
 		self.tiburones().forEach({unTiburon =>
 									game.addVisual(unTiburon)
 									game.onTick(unTiburon.velocidad(), "mover tiburon " + unTiburon.toString(), { unTiburon.moverse() }) })
 	}
-
-	override method aumentarDificultad() { yellowSubmarine.dificultad(self.proximaDificultad()) }
 
 	method nombre() = "facil"
 }
@@ -93,16 +94,12 @@ class Media inherits Dificultad {
 
 	override method limiteMonedas() = 7 
 	method velocidadMoneda() = 5000
-	method proximaDificultad() = new Dificil()
+	override method proximaDificultad() = new Dificil()
 	
-	method bombas() {
-			// bombas 
-			return #{
-				new Bomba(),
-				new Bomba(),
-				new Bomba()	
-			}
-		}
+	override method bombas() {
+		// bombas
+		return #{new Bomba(),new Bomba(),new Bomba()}
+	}
 
 	method tiburones() {
 		// tiburones
@@ -112,16 +109,8 @@ class Media inherits Dificultad {
 		}
 	}
 
-	method agregarPulpo(unPulpo) {
-		game.addVisual(unPulpo)
-		game.onTick(unPulpo.velocidad(), "mover pulpo " + unPulpo.toString(), { unPulpo.moverse() })
-	}
-
-	method generarCambios(){
-		
-		self.bombas().forEach({unaBomba =>  
-									game.addVisual(unaBomba)
-									yellowSubmarine.agregarBomba(unaBomba)}) 
+	override method generarCambios(){
+		super()
 			
 		self.tiburones().forEach({unTiburon =>
 									game.addVisual(unTiburon)
@@ -133,8 +122,6 @@ class Media inherits Dificultad {
 		game.onTick(iman.frecuenciaAtraccion(), "atraccion iman dificultad media", { iman.atraerSubmarino()})
 	}
 
-	override method aumentarDificultad() { yellowSubmarine.dificultad(self.proximaDificultad()) }
-
 	method nombre() = "media"
 }
 
@@ -144,37 +131,26 @@ class Dificil inherits Dificultad {
 
 	override method limiteMonedas() = 14
 	method velocidadMoneda() = 1000
+	override method proximaDificultad(){}
 
 	override method chequearDificultad() {
 		if(submarino.monedas() > self.limiteMonedas())
 			submarino.ganar()
 	}
 	
-	method bombas() {
-		// bombas 
-		return #{
-			new Bomba(),
-			new Bomba(),
-			new Bomba()	
-		}
-	}
-
-	method agregarPulpo(unPulpo) {
-		game.addVisual(unPulpo)
-		game.onTick(unPulpo.velocidad(), "mover pulpo " + unPulpo.toString(), { unPulpo.moverse() })
+	override method bombas() {
+		// bombas
+		return #{new Bomba(),new Bomba(),new Bomba()}
 	}
 	
-	method generarCambios(){
-		
-		self.bombas().forEach({unaBomba =>  
-									game.addVisual(unaBomba)
-									yellowSubmarine.agregarBomba(unaBomba)}) 
+	override method generarCambios(){
+		super()
 
 		self.agregarPulpo(new Pulpo(velocidad = 1000))
 
 		iman.frecuenciaAtraccion(1000)
 		game.removeTickEvent("atraccion iman dificultad media")
-		game.onTick(iman.frecuenciaAtraccion(), "atraccion iman dificultad dificil", { iman.atraerSubmarino()})
+		game.onTick(iman.frecuenciaAtraccion(), "atraccion iman dificultad dificil", { iman.atraerSubmarino() })
 	}
 
 	override method aumentarDificultad() {}

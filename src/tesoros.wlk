@@ -28,8 +28,8 @@ class Moneda {
 	method position() = posicion
 	
 	method teChocoElSubmarino(){
-		//sonido_moneda.volume(0.05)
-		//sonido_moneda.play()
+		sonido_moneda.volume(0.05)
+		sonido_moneda.play()
 		submarino.agarrarMonedas(1)
 		self.agregarMoneda(new Moneda())
 		self.borrarMoneda(self)

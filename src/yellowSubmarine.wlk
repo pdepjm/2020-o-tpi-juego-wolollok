@@ -39,7 +39,7 @@ object yellowSubmarine {
 		self.configurarTeclas()
 		self.configurarAcciones()
 		self.configurarColisiones()
-		// self.configurarMusica()
+		self.configurarMusica()
 		game.start()
 	}
 	
