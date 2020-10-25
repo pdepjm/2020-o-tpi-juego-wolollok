@@ -5,21 +5,30 @@ import tesoros.*
 import obstaculos.*
 import movimientos.*
 
-
-////////////////// DIFICULTADES //////////////////
-
-object facil {
-	var flagCarga = false
+class Dificultad {
 	
-	method cargar() {
-		if(!flagCarga){
-			self.generarCambios()
-			flagCarga = true
+	method limiteMonedas()
+	method aumentarDificultad()
+
+	method chequearDificultad() {
+		if(submarino.monedas() > self.limiteMonedas()){
+			self.aumentarDificultad()
+			yellowSubmarine.dificultad().generarCambios()	
 		}
 	}
 
+}
+
+/////////////////	DIFICULTAD FACIL	/////////////////
+
+class Facil inherits Dificultad {
+
+	override method limiteMonedas() = 3 
+	method velocidadMoneda() = 10000
+	method proximaDificultad() = new Media()
+
 	method piedras() {
-		// piedras
+		// piedras facil
 		return #{
 			new Piedra(posicion = game.at(0,2),imagen = "Stone_6_der.png"),
 			new Piedra(posicion = game.at(0,4),imagen = "Stone_6_der.png"),
@@ -73,19 +82,20 @@ object facil {
 									game.addVisual(unTiburon)
 									game.onTick(unTiburon.velocidad(), "mover tiburon " + unTiburon.toString(), { unTiburon.moverse() }) })
 	}
+
+	override method aumentarDificultad() { yellowSubmarine.dificultad(self.proximaDificultad()) }
+
+	method nombre() = "facil"
 }
 
+/////////////////	DIFICULTAD MEDIA	/////////////////
 
-object media {
-	var flagCarga = false
+class Media inherits Dificultad {
 
-	method cargar() {
-		if(!flagCarga){
-			self.generarCambios()
-			flagCarga = true
-		}
-	}
-
+	override method limiteMonedas() = 7 
+	method velocidadMoneda() = 5000
+	method proximaDificultad() = new Dificil()
+	
 	method bombas() {
 			// bombas 
 			return #{
@@ -126,19 +136,24 @@ object media {
 		game.addVisual(iman)
 		game.onTick(iman.frecuenciaAtraccion(), "atraccion iman dificultad media", { iman.atraerSubmarino()})
 	}
+
+	override method aumentarDificultad() { yellowSubmarine.dificultad(self.proximaDificultad()) }
+
+	method nombre() = "media"
 }
 
+/////////////////	DIFICULTAD DIFICIL	/////////////////	
 
-object dificil {
-	var flagCarga = false
+class Dificil inherits Dificultad {
 
-	method cargar() {
-		if(!flagCarga){
-			self.generarCambios()
-			flagCarga = true
-		}
+	override method limiteMonedas() = 14
+	method velocidadMoneda() = 1000
+
+	override method chequearDificultad() {
+		if(submarino.monedas() > self.limiteMonedas())
+			submarino.ganar()
 	}
-
+	
 	method bombas() {
 		// bombas 
 		return #{
@@ -168,4 +183,8 @@ object dificil {
 		game.removeTickEvent("atraccion iman dificultad media")
 		game.onTick(iman.frecuenciaAtraccion(), "atraccion iman dificultad dificil", { iman.atraerSubmarino()})
 	}
+
+	override method aumentarDificultad() {}
+
+	method nombre() = "dificil"
 }

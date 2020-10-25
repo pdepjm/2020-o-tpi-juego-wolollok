@@ -50,7 +50,7 @@ object submarino {
 	method agarrarMonedas(cantMonedas){
 		monedas += cantMonedas
 		
-		yellowSubmarine.actualizarDificultad()
+		yellowSubmarine.analizarDificultad()
 	}
 
 	method perderTodasLasMonedas() { monedas = 0 }

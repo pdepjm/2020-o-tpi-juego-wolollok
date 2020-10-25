@@ -14,6 +14,6 @@ object billetera{
 }
 
 object indicadorDificultad{
-	method image() =yellowSubmarine.dificultad().toString()+".png"
+	method image() = yellowSubmarine.dificultad().nombre().toString()+".png"
 	method position() = game.at(yellowSubmarine.ancho_juego()/2,yellowSubmarine.alto_juego()-0.5)
 }

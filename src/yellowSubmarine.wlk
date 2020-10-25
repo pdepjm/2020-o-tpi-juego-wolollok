@@ -11,7 +11,7 @@ import interfaz.*
 object yellowSubmarine {
 	var musica
 	var flag = 0
-	var dificultad
+	var property dificultad
 	
 	var property ancho_juego = 20
 	var property alto_juego = 15
@@ -35,7 +35,7 @@ object yellowSubmarine {
 	method iniciar(){
 		self.configurarJuego()
 		self.agregarPersonajes()
-		self.actualizarDificultad()
+		self.configurarDificultad()
 		self.configurarTeclas()
 		self.configurarAcciones()
 		self.configurarColisiones()
@@ -132,20 +132,14 @@ object yellowSubmarine {
 	method noChocaConBombaNiPiedra(nuevaPosicion) {
 		return self.noChocaConBomba(nuevaPosicion) and self.noChocaConPiedra(nuevaPosicion)
 	}
+
+	method analizarDificultad() { dificultad.chequearDificultad() }
+
+	// configura la dificultad inicial del juego en facil y carga esta dificultad
+	method configurarDificultad() { 
+		self.dificultad(new Facil()) 
+		self.dificultad().generarCambios() 
+	} 
 	
-	method actualizarDificultad() {
-		if(submarino.monedas() <= 3)
-			dificultad = facil
-		else if(submarino.monedas() <= 7)
-			dificultad = media
-		else if(submarino.monedas() <= 14)
-			dificultad = dificil
-		else
-			submarino.ganar()
-			
-		dificultad.cargar()
-	}
-	
-	method dificultad() = dificultad
 }
 
