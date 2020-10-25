@@ -18,14 +18,14 @@ class Piedra inherits Obstaculo {
 	const poderGolpe = 1
 	var imagen
 	var posicion
-	// var sonido_piedra = game.sound("choque_piedra.wav")
+	var sonido_piedra = game.sound("choque_piedra.wav")
 	
 	method image() = imagen
 	method position() = posicion
 	
 	method teChocoElSubmarino(){
-		// sonido_piedra.volume(0.1)
-		// sonido_piedra.play()	
+		sonido_piedra.volume(0.1)
+		sonido_piedra.play()	
 		self.golpearSubmarino(poderGolpe)
 	}
 }
@@ -33,8 +33,7 @@ class Piedra inherits Obstaculo {
 
 class Bomba inherits Obstaculo {
 	var poderGolpe = 2
-	//var explosion = game.sound("explosion.wav")
-	
+	var explosion = game.sound("explosion.wav")
 	var imagen = "bomb.png"
 	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
 	
@@ -48,8 +47,8 @@ class Bomba inherits Obstaculo {
 	
 	method explotar() {
 		imagen = "explosion.png"
-		//explosion.volume(0.05)
-		//explosion.play()
+		explosion.volume(0.05)
+		explosion.play()
 		poderGolpe = 0 
 		yellowSubmarine.borrarVisual(1000,self)
 	}
@@ -58,7 +57,7 @@ class Bomba inherits Obstaculo {
 class Tiburon inherits Obstaculo {
 	
 	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
-	var imagen 
+	var imagen
 	const movimiento 	// puede ser vertical u horizontal
 	const poderGolpe = 1
 	var distancia
@@ -92,10 +91,9 @@ class Pulpo inherits Obstaculo {
 	const poderGolpe = 0
 	var velocidad
 	var movimiento = aleatorio
-	var imagen = "EvilOctopus.png"
 	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
 	
-	method image() = imagen
+	method image() = "EvilOctopus.png"
 	method position() = posicion
 	
 	method velocidad() = velocidad
@@ -121,19 +119,16 @@ class Pulpo inherits Obstaculo {
 }
 
 object iman {
-	var imagen = "magnet.png"
-	var posicion = game.at(0,6)
-	
 	var property frecuenciaAtraccion = 3000
 		
-	method image() = imagen
-	method position() = posicion
+	method image() = "magnet.png"
+	method position() = game.at(0,6)
 	
 	method teChocoElSubmarino() {}
 	
 	method atraerSubmarino() {
 		if(!submarino.estaEnMercado())
-		submarino.moverseA(submarino.position().left(1))
+			submarino.moverseA(submarino.position().left(1))
 	}
 }
 
