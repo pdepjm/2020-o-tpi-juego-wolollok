@@ -4,11 +4,22 @@ import tesoros.*
 import submarino.*
 import dificultades.*
 
+const moneda = new Moneda()
+const moneda1 = new Moneda()
+const moneda2 = new Moneda()
+const moneda3 = new Moneda()
+
+const media = new Media()
+
 describe "moneda" {
 
 	fixture {
 		game.clear()
+		yellowSubmarine.configurarDificultad()
 		game.addVisual(moneda)
+		game.addVisual(moneda1)
+		game.addVisual(moneda2)
+		game.addVisual(moneda3)
 		game.addVisual(submarino)
 	}
 	
@@ -21,12 +32,12 @@ describe "moneda" {
 	test "cuando el submarino recoge monedas aumenta la dificultad del juego" {
 		
 		// es necesario porque sino rompe el test
-		game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
+		//game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
 		
 		moneda.teChocoElSubmarino()
-		moneda.teChocoElSubmarino()
-		moneda.teChocoElSubmarino()
-		moneda.teChocoElSubmarino()
+		moneda1.teChocoElSubmarino()
+		moneda2.teChocoElSubmarino()
+		moneda3.teChocoElSubmarino()
 		
 		assert.equals(yellowSubmarine.dificultad(),media)
 	}
@@ -36,6 +47,7 @@ describe "cofre" {
 
 	fixture {
 		game.clear()
+		yellowSubmarine.configurarDificultad()
 		game.addVisual(cofre)
 		game.addVisual(submarino)
 	}

@@ -3,6 +3,9 @@ import yellowSubmarine.*
 import submarino.*
 import items.*
 import obstaculos.*
+import movimientos.*
+
+const tiburon1 = new Tiburon(movimiento = new Horizontal(), imagen = "tiburon_derecha.png", distancia = 3, velocidad = 100) 
 
 describe "tiburon" {
 

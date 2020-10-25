@@ -4,6 +4,8 @@ import submarino.*
 import items.*
 import obstaculos.*
 
+const bomba1 = new Bomba()
+
 describe "bomba" {
 
 	fixture {

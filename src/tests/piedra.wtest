@@ -4,6 +4,8 @@ import submarino.*
 import items.*
 import obstaculos.*
 
+const piedra1 = new Piedra(posicion = game.at(0,2),imagen = "Stone_6_der.png")
+
 describe "piedras" {
 
 	fixture {

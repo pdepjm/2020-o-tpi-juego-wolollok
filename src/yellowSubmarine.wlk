@@ -114,7 +114,7 @@ object yellowSubmarine {
 		
 		var posicion = game.at(x,y)
 		
-		if(game.getObjectsIn(posicion).isEmpty()) // Si no hay nada en esa posicion
+		if(game.getObjectsIn(posicion).isEmpty() and posicion != game.at(0,6)) // Si no hay nada en esa posicion
 			return posicion
 		else 
 			return self.ubicarAleatoriamente(objeto)

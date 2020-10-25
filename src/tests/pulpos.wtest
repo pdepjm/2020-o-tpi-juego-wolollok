@@ -5,18 +5,19 @@ import items.*
 import obstaculos.*
 import tesoros.*
 
+const pulpo1 = new Pulpo(velocidad = 1000)
+const moneda1 = new Moneda()
+
 describe "pulpo" {
 
 	fixture {
 		game.clear()
 		game.addVisual(pulpo1)
-		game.addVisual(moneda)
+		game.addVisual(moneda1)
 		game.addVisual(submarino)
 	}
 	
 	test "cuando el submarino NO tiene escudo y choca con un pulpo, pierde todas las monedas y no pierde vidas" {
-		
-		
 		submarino.monedas(3)
 		assert.equals(submarino.monedas(),3)
 		//moneda.teChocoElSubmarino()
