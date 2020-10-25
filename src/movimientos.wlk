@@ -9,102 +9,131 @@ object encimaDelSubmarino { method posicion() = submarino.position() }
 
 object noAgarrado { method posicion() = game.at(-20,-20)}
 
+// sentidos
+object arriba {
+	method imagen() = "arriba"
+
+	method proximaPosicion(unObjeto) = unObjeto.position().up(1)
+
+	method sentidoOpuesto() = abajo
+}
+
+object abajo {
+	method imagen() = "abajo"	
+
+	method proximaPosicion(unObjeto) = unObjeto.position().down(1)
+
+	method sentidoOpuesto() = arriba
+}
+
+object derecha {
+	method imagen() = "derecha"	
+
+	method proximaPosicion(unObjeto) = unObjeto.position().right(1)
+
+	method sentidoOpuesto() = izquierda
+}
+
+object izquierda {
+	method imagen() = "izquierda"	
+
+	method proximaPosicion(unObjeto) = unObjeto.position().left(1)
+
+	method sentidoOpuesto() = derecha
+}
+
 class Horizontal {
+	var pasos = 0
+	var sentido = derecha
+
+	method imagen() = sentido.imagen()
+
+	method proximaPosicion(unObjeto) = sentido.proximaPosicion(unObjeto)
+
+	method sePuedeMoverA(nuevaPosicion) = yellowSubmarine.noChocaConBombaNiPiedra(nuevaPosicion) and yellowSubmarine.noSaleDelAgua(nuevaPosicion)
 	
-	var contador = 0
-	var sentido = 1
-	
-	method moverseUnaVez(unObjeto) {
-		
-		var posicionAnalizar
-		
-		if(sentido == 1)
-			posicionAnalizar = unObjeto.position().left(1)
-		else 
-			posicionAnalizar = unObjeto.position().right(1)
-		
-		if( contador < unObjeto.distancia() and 
-			yellowSubmarine.noChocaConBombaNiPiedra(posicionAnalizar) and 
-			yellowSubmarine.noSaleDelAgua(posicionAnalizar)
-		){
+	method puedeDarMasPasos(unObjeto) = pasos < unObjeto.distancia()
+
+	method moverseUnaVez(unObjeto) {	
 			
-			if(sentido == 1){
-				contador++
-				unObjeto.cambiarImagenIzquierda()
-				return self.moverIzquierda(unObjeto)
-			}
-			else{
-				contador++
-				unObjeto.cambiarImagenDerecha()
-				return self.moverDerecha(unObjeto)
-			}	
+		if( self.puedeDarMasPasos(unObjeto) and self.sePuedeMoverA(self.proximaPosicion(unObjeto)) ){
+			pasos++
+			return sentido.proximaPosicion(unObjeto)
 		}
-		else
-			return self.cambiarSentido(unObjeto)		
+		else return self.cambiarSentido(unObjeto)		
 	}		
-	
+
 	method cambiarSentido(unObjeto) {
-		sentido = sentido * (-1)
-		contador = 0
+		sentido = sentido.sentidoOpuesto()
+		pasos = 0
 		return unObjeto.position()
-	}
-	
-	method moverIzquierda(unObjeto) {
-			return unObjeto.position().left(1)
-	}
-	
-	method moverDerecha(unObjeto) {
-			return unObjeto.position().right(1)
 	}
 	
 }
 
 class Vertical {
+	var pasos = 0
+	var sentido = arriba
 
-	var contador = 0
-	var sentido = 1
+	method imagen() = sentido.imagen()
+
+	method proximaPosicion(unObjeto) = sentido.proximaPosicion(unObjeto)
+
+	method sePuedeMoverA(nuevaPosicion) = yellowSubmarine.noChocaConBombaNiPiedra(nuevaPosicion) and yellowSubmarine.noSaleDelAgua(nuevaPosicion)
 	
-	method moverseUnaVez(unObjeto) {
-		
-		var posicionAnalizar
-		
-		if(sentido == 1)
-			posicionAnalizar = unObjeto.position().up(1)
-		else 
-			posicionAnalizar = unObjeto.position().down(1)
-		
-		if(contador < unObjeto.distancia() and
-			yellowSubmarine.noChocaConBombaNiPiedra(posicionAnalizar) and 
-			yellowSubmarine.noSaleDelAgua(posicionAnalizar)){
+	method puedeDarMasPasos(unObjeto) = pasos < unObjeto.distancia()
+
+	method moverseUnaVez(unObjeto) {	
 			
-			if(sentido == 1){
-				contador++
-				unObjeto.cambiarImagenArriba()
-				return self.moverArriba(unObjeto)
-			}
-			else{
-				contador++
-				unObjeto.cambiarImagenAbajo()
-				return self.moverAbajo(unObjeto)
-			}	
+		if( self.puedeDarMasPasos(unObjeto) and self.sePuedeMoverA(self.proximaPosicion(unObjeto)) ){
+			pasos++
+			return sentido.proximaPosicion(unObjeto)
 		}
-			
-		else
-			return self.cambiarSentido(unObjeto)				
-	}
-	
+		else return self.cambiarSentido(unObjeto)		
+	}		
+
 	method cambiarSentido(unObjeto) {
-		sentido = sentido * (-1)
-		contador = 0
+		sentido = sentido.sentidoOpuesto()
+		pasos = 0
 		return unObjeto.position()
-	}			
-	
-	method moverArriba(unObjeto) {	
-			return unObjeto.position().up(1)
-	}
-	
-	method moverAbajo(unObjeto) {
-			return unObjeto.position().down(1)
 	}
 	
 }
+
+/*
+class movimientoRecto {
+	var pasos = 0
+	
+	method imagen() = sentido.imagen()
+
+	method proximaPosicion(unObjeto) = sentido.proximaPosicion(unObjeto)
+
+	method sePuedeMoverA(nuevaPosicion) = yellowSubmarine.noChocaConBombaNiPiedra(nuevaPosicion) and yellowSubmarine.noSaleDelAgua(nuevaPosicion)
+	
+	method puedeDarMasPasos(unObjeto) = pasos < unObjeto.distancia()
+
+	method moverseUnaVez(unObjeto) {	
+			
+		if( self.puedeDarMasPasos(unObjeto) and self.sePuedeMoverA(self.proximaPosicion(unObjeto)) ){
+			pasos++
+			return sentido.proximaPosicion(unObjeto)
+		}
+		else return self.cambiarSentido(unObjeto)		
+	}		
+
+	method cambiarSentido(unObjeto) {
+		self.sentido(self.sentido().sentidoOpuesto())
+		pasos = 0
+		return unObjeto.position()
+	}
+	
+}
+
+class Horizontal inherits movimientoRecto{
+	var property sentido = derecha
+}
+
+class Vertical inherits movimientoRecto{
+	var property sentido = arriba
+}
+*/

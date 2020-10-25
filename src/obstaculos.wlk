@@ -57,34 +57,21 @@ class Bomba inherits Obstaculo {
 class Tiburon inherits Obstaculo {
 	
 	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
-	var imagen
 	const movimiento 	// puede ser vertical u horizontal
 	const poderGolpe = 1
 	var distancia
 	var velocidad
 	
-	method image() = imagen
-	method image(imagenNueva) { imagen = imagenNueva } 
-	
+	method image() = "tiburon_" + movimiento.imagen() + ".png"
 	method position() = posicion
-
 	method distancia() = distancia
-
-	method cambiarImagenDerecha() { imagen = "tiburon_derecha.png" }
-
-	method cambiarImagenIzquierda() { imagen = "tiburon_izquierda.png" }
-
-	method cambiarImagenArriba() { imagen = "tiburon_arriba.png" }
-
-	method cambiarImagenAbajo() { imagen = "tiburon_abajo.png" }
+	method velocidad() = velocidad
 	
 	method teChocoElSubmarino() {
 		self.golpearSubmarino(poderGolpe)
 	}
 	
 	method moverse() { posicion = movimiento.moverseUnaVez(self) }	
-	
-	method velocidad() = velocidad
 }
 
 class Pulpo inherits Obstaculo {
