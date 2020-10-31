@@ -3,80 +3,90 @@ import yellowSubmarine.*
 import submarino.*
 import movimientos.*
 
-
 class Obstaculo {	 
-	
-	method golpearSubmarino(poderGolpe){
+
+	method teChocoElSubmarino(){
 		if(submarino.tieneEscudo())
 			submarino.perderEscudo()
 		else
-			submarino.perderVidas(poderGolpe)
+			self.accionAlChocar()
+	}
+
+	method accionAlChocar()
+}
+
+class ObstaculoConPoder inherits Obstaculo{	 
+	
+	method poderGolpe()
+
+	override method accionAlChocar(){
+		self.golpearSubmarino(self.poderGolpe())
+	}
+
+	method golpearSubmarino(poderGolpe){
+		submarino.perderVidas(poderGolpe)
 	}
 }
 
-class Piedra inherits Obstaculo {
-	const poderGolpe = 1
+class Piedra inherits ObstaculoConPoder {
 	var imagen
 	var posicion
 	var sonido_piedra = game.sound("choque_piedra.wav")
 	
+	override method poderGolpe() = 1
 	method image() = imagen
 	method position() = posicion
 	
-	method teChocoElSubmarino(){
-		sonido_piedra.volume(0.1)
-		sonido_piedra.play()	
-		self.golpearSubmarino(poderGolpe)
+	override method accionAlChocar(){
+		super()
+		//sonido_piedra.volume(0.1)
+		//sonido_piedra.play()	
 	}
 }
 
 
-class Bomba inherits Obstaculo {
-	var poderGolpe = 2
+class Bomba inherits ObstaculoConPoder {
 	var explosion = game.sound("explosion.wav")
 	var imagen = "bomb.png"
 	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
+	var poderGolpe = 2
 	
+	override method poderGolpe() = poderGolpe
 	method image() = imagen
 	method position() = posicion
 	
-	method teChocoElSubmarino(){
-		self.golpearSubmarino(poderGolpe)
+	override method accionAlChocar(){
+		super()
 		self.explotar()	
 	}
 	
 	method explotar() {
 		imagen = "explosion.png"
-		explosion.volume(0.05)
-		explosion.play()
+		//explosion.volume(0.05)
+		//explosion.play()
 		poderGolpe = 0 
 		yellowSubmarine.borrarVisual(1000,self)
 	}
 }
 
-class Tiburon inherits Obstaculo {
-	
+class Tiburon inherits ObstaculoConPoder {
 	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
 	const movimiento 	// puede ser vertical u horizontal
-	const poderGolpe = 1
 	var distancia
 	var velocidad
 	
+	override method poderGolpe() = 1
 	method image() = "tiburon_" + movimiento.imagen() + ".png"
 	method position() = posicion
 	method distancia() = distancia
 	method velocidad() = velocidad
 	method movimiento() = movimiento
 	
-	method teChocoElSubmarino() {
-		self.golpearSubmarino(poderGolpe)
-	}
-	
 	method moverse() { posicion = movimiento.moverseUnaVez(self) }	
 }
 
 class Pulpo inherits Obstaculo {
-	const poderGolpe = 0
+
 	var velocidad
 	var movimiento = aleatorio
 	var posicion = yellowSubmarine.ubicarAleatoriamente(self)
@@ -86,17 +96,8 @@ class Pulpo inherits Obstaculo {
 	
 	method velocidad() = velocidad
 
-	method teChocoElSubmarino(){
-		self.golpearSubmarino(poderGolpe)
-	}
-
-	override method golpearSubmarino(danio){
-		if(submarino.tieneEscudo())
-			submarino.perderEscudo()
-		else{
-			submarino.perderVidas(danio)
-			self.robarMonedas()
-		}
+	override method accionAlChocar(){
+		self.robarMonedas()
 	}
 
 	method robarMonedas() {

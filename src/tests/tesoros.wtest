@@ -28,19 +28,6 @@ describe "moneda" {
 		moneda.teChocoElSubmarino()
 		assert.equals(submarino.monedas(),1)
 	}
-	
-	test "cuando el submarino recoge monedas aumenta la dificultad del juego" {
-		
-		// es necesario porque sino rompe el test
-		//game.onTick(moneda.tiempoCambioPosicion(), "mover la moneda", { moneda.moverse()} )
-		
-		moneda.teChocoElSubmarino()
-		moneda1.teChocoElSubmarino()
-		moneda2.teChocoElSubmarino()
-		moneda3.teChocoElSubmarino()
-		
-		assert.equals(yellowSubmarine.dificultad(),media)
-	}
 }
 
 describe "cofre" {

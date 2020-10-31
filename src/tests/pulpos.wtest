@@ -26,15 +26,15 @@ describe "pulpo" {
 		assert.equals(submarino.monedas(),0)
 	}
 	
-	test "cuando el submarino tiene escudo y choca con un pulpo, NO pierde todas las monedas y no pierde vidas" {		
+	test "cuando el submarino tiene escudo y choca con un pulpo, pierde el escudo, no pierde todas las monedas y no pierde vidas" {		
 		escudo.rodearSubmarino()
 		submarino.monedas(3)
 		assert.equals(submarino.monedas(),3)
 		//moneda.teChocoElSubmarino()
 		pulpo1.teChocoElSubmarino()
+		assert.notThat(submarino.tieneEscudo())
 		assert.equals(submarino.vidas(),3)
 		assert.equals(submarino.monedas(),3)
-
 	}
 	
 }
