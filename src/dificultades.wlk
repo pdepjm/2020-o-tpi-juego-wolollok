@@ -67,9 +67,9 @@ class Facil inherits Dificultad {
 	method tiburones() {
 		// tiburones
 		return #{
-			new Tiburon(movimiento = new Horizontal(), distancia = 3, velocidad = 100),
-			new Tiburon(movimiento = new Vertical(), distancia = 2, velocidad = 100),
-			new Tiburon(posicion = game.at(5,2), movimiento = new Horizontal(), distancia = 2, velocidad = 250)
+			new Tiburon(movimiento = new MovimientoRecto(sentido = derecha), distancia = 3, velocidad = 100),
+			new Tiburon(movimiento = new MovimientoRecto(sentido = arriba), distancia = 2, velocidad = 100),
+			new Tiburon(posicion = game.at(5,2), movimiento = new MovimientoRecto(sentido = derecha), distancia = 2, velocidad = 250)
 		}
 	}
 	
@@ -104,8 +104,8 @@ class Media inherits Dificultad {
 	method tiburones() {
 		// tiburones
 		return #{
-			new Tiburon(movimiento = new Horizontal(), distancia = 4, velocidad = 50),
-			new Tiburon(movimiento = new Vertical(), distancia = 7, velocidad = 50)
+			new Tiburon(movimiento = new MovimientoRecto(sentido = derecha), distancia = 4, velocidad = 50),
+			new Tiburon(movimiento = new MovimientoRecto(sentido = arriba), distancia = 7, velocidad = 50)
 		}
 	}
 

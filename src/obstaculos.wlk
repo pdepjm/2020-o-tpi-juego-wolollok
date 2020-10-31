@@ -66,6 +66,7 @@ class Tiburon inherits Obstaculo {
 	method position() = posicion
 	method distancia() = distancia
 	method velocidad() = velocidad
+	method movimiento() = movimiento
 	
 	method teChocoElSubmarino() {
 		self.golpearSubmarino(poderGolpe)

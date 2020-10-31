@@ -5,7 +5,9 @@ import items.*
 import obstaculos.*
 import movimientos.*
 
-const tiburon1 = new Tiburon(movimiento = new Horizontal(), distancia = 3, velocidad = 100) 
+const tiburon1 = new Tiburon(movimiento =  new MovimientoRecto(sentido = derecha), distancia = 3, velocidad = 100, posicion = game.at(0,0)) 
+const piedra = new Piedra(imagen = "Stone_6.png", posicion = game.at(2,0)) 
+
 
 describe "tiburon" {
 
@@ -36,5 +38,19 @@ describe "tiburon" {
 		assert.equals(submarino.vidas(),0)
 	}
 	
+	test "el tiburon se mueve correctamente una posicion" {
+
+		tiburon1.moverse()
+		assert.equals(tiburon1.position(),game.at(1,0))
+	}
 	
+	test "el tiburon cambia de sentido al recorrer la distancia indicada" {
+
+		4.times({i => tiburon1.moverse()})
+		assert.equals(tiburon1.position(),game.at(3,0))
+		assert.equals(tiburon1.movimiento().sentido(),izquierda)
+		
+		2.times({i => tiburon1.moverse()})
+		assert.equals(tiburon1.position(),game.at(1,0))
+	}	
 }
