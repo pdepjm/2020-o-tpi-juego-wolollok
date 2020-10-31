@@ -1,0 +1,25 @@
+import wollok.game.*
+import yellowSubmarine.*
+import submarino.*
+import dificultades.*
+import tesoros.*
+
+const moneda1 = new Moneda()
+
+describe "dificultades" {
+	
+	fixture {
+		game.clear()
+		yellowSubmarine.configurarDificultad()
+		game.addVisual(submarino)
+		game.addVisual(moneda1)
+	}
+	
+	test "Aumenta la dificultad del juego al agarrar una moneda"{
+		
+		submarino.monedas(3)
+		assert.equals(yellowSubmarine.dificultad().nombre(),"facil")
+		moneda1.teChocoElSubmarino()
+		assert.equals(yellowSubmarine.dificultad().nombre(),"media")
+	}
+}
