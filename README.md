@@ -1,4 +1,4 @@
-### Yellow Submarine
+# Yellow Submarine
 
 - En este juego debemos recolectar 15 monedas manejando el submarino para ganar evitando los obstáculos. 
 
@@ -41,7 +41,7 @@ Pulpo:
 
 ## Dificultades
 
-# Dificultad fácil (entre 0 a 3 monedas)
+### Dificultad fácil (entre 0 a 3 monedas)
 
 Esta es la dificultad inicial del juego. 
 
@@ -52,7 +52,7 @@ Obstáculos:
   - 1 tiburón de movimiento horizontal (custodiando el cofre)
   - 6 bombas
 
-# Dificultad media (entre 4 a 7 monedas)
+### Dificultad media (entre 4 a 7 monedas)
 
 Esta dificultad se activa cuando el submarino recoge la 4ta moneda. 
 
@@ -63,7 +63,7 @@ Se agregan los siguientes obstáculos:
   - 1 pulpo el cual se mueve cada 2 segundos
   - 1 imán en el borde izquierdo (Atrae 1 casillero hacia la izquierda cada 1 seg)
 
-# Dificultad alta (entre 8 a 14 monedas)
+### Dificultad alta (entre 8 a 14 monedas)
 
 Esta dificultad se activa cuando el submarino recoge la 8va moneda.
 
