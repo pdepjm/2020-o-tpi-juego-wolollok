@@ -7,12 +7,7 @@ object mercado {
 	var property image = "Boat Shop.png"
 	var property position = game.at(1,12)
 	method teChocoElSubmarino(){
-			keyboard.b().onPressDo({
-				if(submarino.estaEnMercado())
-					{submarino.salirDelMercado() game.removeVisual(menu)}
-				else
-					{submarino.entrarAlMercado() self.atenderSubmarino()}
-			})
+		submarino.sobreElMercado(true)
 	}
 	
 	method atenderSubmarino(){

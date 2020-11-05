@@ -11,6 +11,7 @@ object submarino {
 	var property vidas = 3
 	var property monedas = 0
 	var property tieneEscudo = false
+	var property sobreElMercado = false
 	
 	method moverseA(nuevaPosicion){
 		
@@ -63,8 +64,11 @@ object submarino {
 	method entrarAlMercado(){
 		estaEnMercado = true
 	}
+		
 	method salirDelMercado(){
 		estaEnMercado = false
+		game.schedule(1, {self.moverseA(posicionAnterior)})
+		sobreElMercado=false
 	}
 	method comprarVida(){
 		if(vidas<3)

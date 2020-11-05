@@ -31,7 +31,7 @@ class ObstaculoConPoder inherits Obstaculo{
 class Piedra inherits ObstaculoConPoder {
 	var imagen
 	var posicion
-	var sonido_piedra = game.sound("choque_piedra.wav")
+	const sonido_piedra = game.sound("choque_piedra.wav")
 	
 	override method poderGolpe() = 1
 	method image() = imagen
@@ -39,11 +39,20 @@ class Piedra inherits ObstaculoConPoder {
 	
 	override method accionAlChocar(){
 		super()
-		//sonido_piedra.volume(0.1)
-		//sonido_piedra.play()	
+		self.ruido()
+		}
+	method ruido(){
+		if(sonido_piedra.played()){
+			sonido_piedra.resume()
+			game.schedule(300,{sonido_piedra.pause()})}
+		else{
+			sonido_piedra.volume(0.04)
+			sonido_piedra.shouldLoop(true)
+			sonido_piedra.play()
+			game.schedule(300,{sonido_piedra.pause()})
+		}
 	}
 }
-
 
 class Bomba inherits ObstaculoConPoder {
 	var explosion = game.sound("explosion.wav")
@@ -62,10 +71,20 @@ class Bomba inherits ObstaculoConPoder {
 	
 	method explotar() {
 		imagen = "explosion.png"
-		//explosion.volume(0.05)
-		//explosion.play()
 		poderGolpe = 0 
 		yellowSubmarine.borrarVisual(1000,self)
+		self.ruido()
+	}
+	method ruido(){
+		if(explosion.played()){
+			explosion.resume()
+			game.schedule(300,{explosion.pause()})}
+		else{
+			explosion.volume(0.04)
+			explosion.shouldLoop(true)
+			explosion.play()
+			game.schedule(300,{explosion.pause()})
+		}
 	}
 }
 
@@ -121,4 +140,13 @@ object iman {
 	}
 }
 
-
+/*
+class Sonido{
+	var ruta
+	var sonido = game.sound(ruta)
+	method reproducir(){
+		sonido.volume(0.1)
+		sonido.shouldLoop(true)
+		sonido.play()
+	}
+} */

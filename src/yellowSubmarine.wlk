@@ -37,7 +37,6 @@ object yellowSubmarine {
 		self.configurarDificultad()
 		self.agregarPersonajes()
 		self.configurarTeclas()
-		self.configurarAcciones()
 		self.configurarColisiones()
 		self.configurarMusica()
 		game.start()
@@ -76,10 +75,15 @@ object yellowSubmarine {
 			flag=0 }
 				
 		})
-	}
-	
-	method configurarAcciones(){
-		
+		keyboard.b().onPressDo({
+			if(submarino.sobreElMercado()){
+				if(submarino.estaEnMercado())
+					{submarino.salirDelMercado() game.removeVisual(menu)}
+				else
+					{submarino.entrarAlMercado() mercado.atenderSubmarino()}}
+			else
+				game.error("No estás en el mercado")			
+		})
 	}
 	
 	method configurarColisiones(){
