@@ -4,6 +4,7 @@ import submarino.*
 import tesoros.*
 import obstaculos.*
 import movimientos.*
+import interfaz.*
 
 class Dificultad {
 	
@@ -135,7 +136,7 @@ class Dificil inherits Dificultad {
 
 	override method chequearDificultad() {
 		if(submarino.monedas() > self.limiteMonedas())
-			submarino.ganar()
+			yellowSubmarine.finJuegoPor(victoria)
 	}
 	
 	override method bombas() {

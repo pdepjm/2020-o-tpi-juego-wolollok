@@ -27,15 +27,16 @@ object submarino {
 		}
 			
 	}
-	
+	/*
 	method perdio(){
 		yellowSubmarine.finJuegoPor(derrota)
-	}
+	} */
 	
 	method perderVidas(poderGolpe) {
 		vidas = (vidas - poderGolpe).max(0)
 		if(vidas == 0)
-			self.perdio()
+			//self.perdio()
+			yellowSubmarine.finJuegoPor(derrota)
 	}
 	
 	method activarEscudo(){
@@ -50,16 +51,15 @@ object submarino {
 	
 	method agarrarMonedas(cantMonedas){
 		monedas += cantMonedas
-		if(monedas>1)
-			self.ganar()
-		//yellowSubmarine.analizarDificultad()
+		
+		yellowSubmarine.analizarDificultad()
 	}
 
 	method perderTodasLasMonedas() { monedas = 0 }
-	
+	/* 
 	method ganar(){
 		yellowSubmarine.finJuegoPor(victoria)
-	}
+	}*/
 	
 	method entrarAlMercado(){
 		estaEnMercado = true

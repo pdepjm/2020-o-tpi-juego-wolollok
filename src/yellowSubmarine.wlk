@@ -146,10 +146,10 @@ object yellowSubmarine {
 
 	method analizarDificultad() { dificultad.chequearDificultad() }
 	
-	method finJuegoPor(Motivo){
+	method finJuegoPor(motivo){
 		musica.pause()
-		game.addVisual(Motivo)
-		Motivo.musica()
+		game.addVisual(motivo)
+		motivo.musica()
 		game.schedule(3500,{game.stop()})
 	}
 }
