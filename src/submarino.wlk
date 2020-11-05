@@ -2,6 +2,7 @@ import wollok.game.*
 import yellowSubmarine.*
 import items.*
 import mercado.*
+import interfaz.*
 
 object submarino {
 	var property estaEnMercado = false
@@ -28,8 +29,7 @@ object submarino {
 	}
 	
 	method perdio(){
-		game.say(self, "¡PERDÍ!")
-		game.schedule(2000, { game.stop()})
+		yellowSubmarine.finJuegoPor(derrota)
 	}
 	
 	method perderVidas(poderGolpe) {
@@ -50,15 +50,15 @@ object submarino {
 	
 	method agarrarMonedas(cantMonedas){
 		monedas += cantMonedas
-		
-		yellowSubmarine.analizarDificultad()
+		if(monedas>1)
+			self.ganar()
+		//yellowSubmarine.analizarDificultad()
 	}
 
 	method perderTodasLasMonedas() { monedas = 0 }
 	
 	method ganar(){
-		game.say(self, "GANASTE LA PARTIDA")
-		game.schedule(2000, { game.stop()})
+		yellowSubmarine.finJuegoPor(victoria)
 	}
 	
 	method entrarAlMercado(){

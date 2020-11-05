@@ -139,14 +139,3 @@ object iman {
 			submarino.moverseA(submarino.position().left(1))
 	}
 }
-
-/*
-class Sonido{
-	var ruta
-	var sonido = game.sound(ruta)
-	method reproducir(){
-		sonido.volume(0.1)
-		sonido.shouldLoop(true)
-		sonido.play()
-	}
-} */

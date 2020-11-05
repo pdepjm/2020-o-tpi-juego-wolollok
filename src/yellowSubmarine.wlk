@@ -78,7 +78,7 @@ object yellowSubmarine {
 		keyboard.b().onPressDo({
 			if(submarino.sobreElMercado()){
 				if(submarino.estaEnMercado())
-					{submarino.salirDelMercado() game.removeVisual(menu)}
+					{submarino.salirDelMercado() game.removeVisual(menuMercado)}
 				else
 					{submarino.entrarAlMercado() mercado.atenderSubmarino()}}
 			else
@@ -92,7 +92,7 @@ object yellowSubmarine {
 	
 	method configurarMusica(){
 		musica=game.sound("musica.mp3")
-		musica.volume(0.05)
+		musica.volume(0.1)
 		game.schedule(500,{
 			musica.shouldLoop(true)
 			musica.play()		
@@ -146,5 +146,11 @@ object yellowSubmarine {
 
 	method analizarDificultad() { dificultad.chequearDificultad() }
 	
+	method finJuegoPor(Motivo){
+		musica.pause()
+		game.addVisual(Motivo)
+		Motivo.musica()
+		game.schedule(3500,{game.stop()})
+	}
 }
 

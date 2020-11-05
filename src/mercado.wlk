@@ -1,5 +1,6 @@
 import wollok.game.*
 import submarino.*
+import interfaz.*
 
 object mercado {
 	const precioVida=2
@@ -11,7 +12,7 @@ object mercado {
 	}
 	
 	method atenderSubmarino(){
-			game.addVisual(menu)
+			game.addVisual(menuMercado)
 			keyboard.v().onPressDo({self.venderVida()})
 			keyboard.e().onPressDo({self.venderEscudo()})
 }
@@ -19,7 +20,7 @@ object mercado {
 	method precioEscudo()=precioEscudo
 	method venderVida(){
 		if(submarino.monedas()<precioVida)
-			menu.error()
+			menuMercado.error()
 		else
 			submarino.comprarVida()
 	}
@@ -27,16 +28,6 @@ object mercado {
 		if(submarino.monedas()>=precioEscudo)
 			submarino.comprarEscudo()
 		else
-			menu.error()
-	}
-}
-
-object menu{
-	var property image= "Menu_mercado.jpg"
-	method position()=game.origin()
-
-	method error(){
-		self.image("Menu_mercado_error.jpg")
-		game.schedule(1000,{self.image("Menu_Mercado.jpg")})
+			menuMercado.error()
 	}
 }
