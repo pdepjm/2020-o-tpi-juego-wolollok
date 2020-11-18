@@ -10,12 +10,6 @@ object mercado {
 	method teChocoElSubmarino(){
 		submarino.sobreElMercado(true)
 	}
-	
-	method atenderSubmarino(){
-			game.addVisual(menuMercado)
-			keyboard.v().onPressDo({self.venderVida()})
-			keyboard.e().onPressDo({self.venderEscudo()})
-}
 	method precioVida()=precioVida
 	method precioEscudo()=precioEscudo
 	method venderVida(){

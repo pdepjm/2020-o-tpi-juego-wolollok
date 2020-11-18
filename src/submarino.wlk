@@ -5,6 +5,7 @@ import mercado.*
 import interfaz.*
 
 object submarino {
+	var property inmovilizado = false
 	var property estaEnMercado = false
 	var property image = "submarino-right.png"
 	var property position = game.at(9,12)
@@ -15,17 +16,16 @@ object submarino {
 	var property sobreElMercado = false
 	
 	method moverseA(nuevaPosicion){
-		
-		if(yellowSubmarine.noSaleDelAgua(nuevaPosicion) and yellowSubmarine.noChocaConPiedra(nuevaPosicion)){
+		if(!inmovilizado){
+			if(yellowSubmarine.noSaleDelAgua(nuevaPosicion) and yellowSubmarine.noChocaConPiedra(nuevaPosicion)){
 			posicionAnterior = position
 			position = nuevaPosicion
-		}else if(yellowSubmarine.noSaleDelAgua(nuevaPosicion) and yellowSubmarine.chocaConPiedra(nuevaPosicion)){
+			}else if(yellowSubmarine.noSaleDelAgua(nuevaPosicion) and yellowSubmarine.chocaConPiedra(nuevaPosicion)){
 			posicionAnterior = position
 			position = nuevaPosicion
 			game.schedule(500, {self.moverseA(posicionAnterior)})
-			
+			}
 		}
-			
 	}
 	/*
 	method perdio(){
@@ -63,12 +63,14 @@ object submarino {
 	
 	method entrarAlMercado(){
 		estaEnMercado = true
+		inmovilizado = true
 	}
 		
 	method salirDelMercado(){
 		estaEnMercado = false
 		game.schedule(1, {self.moverseA(posicionAnterior)})
 		sobreElMercado=false
+		inmovilizado = false
 	}
 	method comprarVida(){
 		if(vidas<3)

@@ -94,9 +94,17 @@ object yellowSubmarine {
 				if(submarino.estaEnMercado())
 					{submarino.salirDelMercado() game.removeVisual(menuMercado)}
 				else
-					{submarino.entrarAlMercado() mercado.atenderSubmarino()}}
+					{submarino.entrarAlMercado() game.addVisual(menuMercado)}}
 			else
 				game.error("No estás en el mercado")			
+		})
+		keyboard.v().onPressDo({
+			if(game.hasVisual(menuMercado)) mercado.venderVida()
+			else {}
+		})
+		keyboard.e().onPressDo({
+			if(game.hasVisual(menuMercado)) mercado.venderEscudo()
+			else {}
 		})
 	}
 	
@@ -166,9 +174,5 @@ object yellowSubmarine {
 		motivo.musica()
 		game.schedule(3500,{game.stop()})
 	}
-	
-	/*method preguntarReinicio(){
-		game.addVisual(volverAIntentar)
-	}*/
 }
 
