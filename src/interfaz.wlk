@@ -46,6 +46,11 @@ object derrota{
 	method musica(){
 		derrotaSound.volume(0.3)
 		derrotaSound.shouldLoop(true)
-		derrotaSound.play()	
+		derrotaSound.play()
 		}
+}
+
+object menuPrincipal{
+	var property image= "menuPrincipal.png"
+	method position()=game.origin()
 }

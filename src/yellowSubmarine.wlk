@@ -34,11 +34,9 @@ object yellowSubmarine {
 
 	method iniciar(){
 		self.configurarJuego()
-		self.configurarDificultad()
-		self.agregarPersonajes()
-		self.configurarTeclas()
-		self.configurarColisiones()
 		self.configurarMusica()
+		self.configurarTeclas()
+		self.cargarMenu()
 		game.start()
 	}
 	
@@ -47,6 +45,18 @@ object yellowSubmarine {
 		game.width(ancho_juego)
 		game.height(alto_juego)
 		game.boardGround("fondomarConOrilla.png")
+	}
+	
+	method cargarJuegoPosta(){
+		self.configurarDificultad()
+		self.agregarPersonajes()
+		self.agregarHUD()
+		self.configurarColisiones()
+	}
+	method cargarMenu(){
+		game.addVisual(menuPrincipal)
+	}
+	method agregarHUD(){
 		game.addVisual(indicadorDificultad)
 		game.addVisual(barraVida)
 		game.addVisual(billetera)
@@ -61,20 +71,24 @@ object yellowSubmarine {
 	}
 
 	method configurarTeclas(){
+		keyboard.m().onPressDo({ 
+			if(flag==0){
+				musica.pause()
+				flag=1 }
+			else{
+				musica.resume()
+				flag=0 }	
+			})	
+		keyboard.space().onPressDo({
+			if(game.hasVisual(menuPrincipal)){
+				game.removeVisual(menuPrincipal)
+				self.cargarJuegoPosta()}
+			else{}
+		})
 		keyboard.up().onPressDo({ submarino.moverseA(submarino.position().up(1))})
 		keyboard.down().onPressDo({ submarino.moverseA(submarino.position().down(1))})
 		keyboard.left().onPressDo({	submarino.moverseA(submarino.position().left(1)) submarino.image("submarino-left.png")})
 		keyboard.right().onPressDo({ submarino.moverseA(submarino.position().right(1)) submarino.image("submarino-right.png")})
-		keyboard.m().onPressDo({ 
-		
-		if(flag==0){
-			musica.pause()
-			flag=1 }
-		else{
-			musica.resume()
-			flag=0 }
-				
-		})
 		keyboard.b().onPressDo({
 			if(submarino.sobreElMercado()){
 				if(submarino.estaEnMercado())
@@ -144,7 +158,7 @@ object yellowSubmarine {
 		return self.noChocaConBomba(nuevaPosicion) and self.noChocaConPiedra(nuevaPosicion)
 	}
 
-	method analizarDificultad() { dificultad.chequearDificultad() }
+	method analizarDificultad() {dificultad.chequearDificultad() }
 	
 	method finJuegoPor(motivo){
 		musica.pause()
@@ -152,5 +166,9 @@ object yellowSubmarine {
 		motivo.musica()
 		game.schedule(3500,{game.stop()})
 	}
+	
+	/*method preguntarReinicio(){
+		game.addVisual(volverAIntentar)
+	}*/
 }
 
